@@ -112,6 +112,7 @@ clientsController.save = function (request, response) {
 
     // Entrega el resultado de la validación anterior al modelo, con una respuesta 
     clientsModel.save(dataClient, function (answerSave) {
+        
         if (answerSave.state == true) {
             response.json({ state: true, mensaje: "Se registró correctamente" })
         } else {
@@ -126,6 +127,7 @@ clientsController.loadAll = function (request, response) {
 
     // Aquí se llama la funcionalidad del modelo y muestra la respuesta
     clientsModel.loadAll(null, function (answerAll) {
+        
         response.json(answerAll)
     })
 }
@@ -158,6 +160,7 @@ clientsController.loadIdentification = function (request, response) {
     }
 
     clientsModel.loadIdentification(dataClient, function (answerLoad) {
+        
         response.json(answerLoad)
     })
 
@@ -270,6 +273,7 @@ clientsController.updateIdentification = function (request, response) {
     }
 
     clientsModel.updateIdentification(dataClient, function (answerUpdate) {
+        
         if (answerUpdate.state = true) {
             response.json({ state: true, mensaje: "Se actualizó correctamente" })
         } else {
@@ -306,6 +310,7 @@ clientsController.delete = function (request, response) {
     }
 
     clientsModel.delete(dataClient,function(answerDelete){
+        
         if(answerDelete.state == true){
             response.json({state:true,mensaje:"Se eliminó correctamente"})
         }else{

@@ -1,38 +1,29 @@
-var clientsModel = {} // objeto que contiene los modelos
+var productsModel = {} // objeto que contiene los modelos
 const mongoose = require('mongoose') //para importar mongoose
 
 //se crea el esquema de mongo
 const Schema = mongoose.Schema;
 
 //se definen los tipos que tiene el esquema
-var clientsSchema = new Schema({
+var productsSchema = new Schema({
 
-    identification: Number,
-    name: String,
-    lastName: String,
-    adress: String,
-    phone: Number,
-    age: Number,
-    status: String
+    code: Number,
+    nameProduct: String
 
 })
 
 //se crea la coleccion en la base de datos y se le asigna el esquema 
-const cModel = mongoose.model('clients', clientsSchema)
+const pModel = mongoose.model('products', productsSchema)
 
 
 // el modelo recibe los datos del controlador por medio del post, el modelo los procesa y retorna un callback "respuesta" al controlador
-clientsModel.save = function (dataClient, callback) {
+productsModel.save = function (dataProduct, callback) {
 
-    //se establece que este documento se guarda en la colección "clients"
-    const instancia = new cModel
-    instancia.identification = dataClient.identification
-    instancia.name = dataClient.name
-    instancia.lastName = dataClient.lastName
-    instancia.adress = dataClient.adress
-    instancia.phone = dataClient.phone
-    instancia.age = dataClient.age
-    instancia.status = dataClient.status
+    //se establece que este documento se guarda en la colección "products"
+    const instancia = new pModel
+    instancia.code = dataProduct.code
+    instancia.nameProduct = dataProduct.nameProduct
+
     //para guardar, si genera false muestra el mensaje false del controlador, si genera true muestra el mensaje true del controlador 
     instancia.save((error, created) => {
         if (error) {
@@ -46,9 +37,9 @@ clientsModel.save = function (dataClient, callback) {
 }
 
 // en este caso el modelo no recibe datos ya que solamente los debe cargar lo que se guardo, por eso queda Null y retorna un callback "respuesta" al controlador
-clientsModel.loadAll = function (dataClient, callback) {
+productsModel.loadAll = function (dataProduct, callback) {
 
-    cModel.find({}, { _id: 0, identification: 1, name: 1, lastName: 1, phone: 1 }, (error, answerData) => {
+    pModel.find({}, { _id: 0, code: 1, nameProduct: 1}, (error, answerData) => {
         if (error) {
             return callback({ state: false, data: error })
         }
@@ -60,10 +51,10 @@ clientsModel.loadAll = function (dataClient, callback) {
 }
 
 // el modelo recibe los datos del controlador por medio del post, el modelo los procesa y retorna un callback "respuesta" al controlador
-clientsModel.loadIdentification = function (dataClient, callback) {
+productsModel.loadIdentification = function (dataProduct, callback) {
 
     //buscar la cédula
-    cModel.find({ identification: dataClient.identification }, {}, (error, answerData) => {
+    pModel.find({ code: dataProduct.code }, {}, (error, answerData) => {
         if (error) {
             return callback({ state: false, data: error })
         }
@@ -76,23 +67,18 @@ clientsModel.loadIdentification = function (dataClient, callback) {
 }
 
 // el modelo recibe los datos del controlador por medio del post, el modelo los procesa y retorna un callback "respuesta" al controlador
-clientsModel.updateIdentification = function (dataClient, callback) {
+productsModel.updateIdentification = function (dataProduct, callback) {
 
-    cModel.find({ identification: dataClient.identification }, {}, (error, answerData) => {
+    pModel.find({ code: dataProduct.code }, {}, (error, answerData) => {
         if (error) {
             return callback({ state: false, mensaje: error })
         }
         else {
             if (answerData.length > 0) {
-                cModel.findByIdAndUpdate(answerData[0]._id,
+                pModel.findByIdAndUpdate(answerData[0]._id,
                     {
-                        identification: dataClient.identification,
-                        name: dataClient.name,
-                        lastName: dataClient.lastName,
-                        adress: dataClient.adress,
-                        phone: dataClient.phone,
-                        age: dataClient.age,
-                        status: dataClient.status
+                        code: dataProduct.code,
+                        nameProduct: dataProduct.nameProduct
                     }, (error, modified) => {
                         if (error) {
                             return callback({ state: false, mensaje: error })
@@ -109,15 +95,15 @@ clientsModel.updateIdentification = function (dataClient, callback) {
 }
 
 // el modelo recibe los datos del controlador por medio del post, el modelo los procesa y retorna un callback "respuesta" al controlador
-clientsModel.delete = function (dataClient, callback) {
+productsModel.delete = function (dataProduct, callback) {
 
-    cModel.find({ identification: dataClient.identification }, {}, (error, answerData) => {
+    pModel.find({ code: dataProduct.code }, {}, (error, answerData) => {
         if (error) {
             return callback({ state: false, mensaje: error })
         }
         else {
             if (answerData.length > 0) {
-                cModel.findByIdAndDelete(answerData[0]._id, (error, deleted) => {
+                pModel.findByIdAndDelete(answerData[0]._id, (error, deleted) => {
                     if (error) {
                         return callback({ state: false, mensaje: error })
                     }
@@ -132,4 +118,4 @@ clientsModel.delete = function (dataClient, callback) {
     })
 }
 
-module.exports.modelClients = clientsModel // para exportar los modelos y que se puedan usar en los controladores
+module.exports.modelProducts = productsModel // para exportar los modelos y que se puedan usar en los controladores
