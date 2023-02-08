@@ -1,0 +1,15 @@
+<div id="Registro">
+    <div class="mb-3">
+        <label for="Nombre" class="form-label">Nombre</label>
+        <input type="text" class="form-control" id="Nombre" [(ngModel)]="nombre">
+      </div>
+    <div class="mb-3">
+      <label for="email" class="form-label">Correo</label>
+      <input type="email" class="form-control" id="email" [(ngModel)]="email">
+    </div>
+    <div class="mb-3">
+      <label for="password" class="form-label">Contraseña</label>
+      <input type="password" class="form-control" id="password" [(ngModel)]="password">
+    </div>
+    <button type="submit" class="btn btn-primary" (click)="Guardar()">Registrarse</button>
+</div>

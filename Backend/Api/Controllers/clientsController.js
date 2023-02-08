@@ -2,6 +2,7 @@ var clientsController = {} //objeto que contiene los controladores
 
 // vincular el controlador con el modelo
 var clientsModel = require(__dirname + '/../Models/clientsModel.js').modelClients
+const mongoose = require('mongoose') //para importar mongoose
 
 
 clientsController.save = function (request, response) {
@@ -110,13 +111,19 @@ clientsController.save = function (request, response) {
         return false
     }
 
+    //para validar que el dato estadoCivil se llene de acuerdo a la lista especificada
+    if (dataClient.status != "Soltero" && dataClient.status != "Casado" && dataClient.status != "Unión libre") {
+        response.json({ state: false, mensaje: "Debe escribir las opciones Soltero, Casado o Unión libre" })
+        return false
+    }
+
     // Entrega el resultado de la validación anterior al modelo, con una respuesta 
     clientsModel.save(dataClient, function (answerSave) {
-        
+
         if (answerSave.state == true) {
-            response.json({ state: true, mensaje: "Se registró correctamente" })
+            response.json({ state: true, mensaje: answerSave.mensaje })
         } else {
-            response.json({ state: false, mensaje: "Se presentó un error al registrar" })
+            response.json({ state: false, mensaje: answerSave.mensaje })
         }
     })
 
@@ -126,9 +133,9 @@ clientsController.save = function (request, response) {
 clientsController.loadAll = function (request, response) {
 
     // Aquí se llama la funcionalidad del modelo y muestra la respuesta
-    clientsModel.loadAll(null, function (answerAll) {
-        
-        response.json(answerAll)
+    clientsModel.loadAll(null, function (answerLoadA) {
+
+        response.json(answerLoadA)
     })
 }
 
@@ -159,9 +166,9 @@ clientsController.loadIdentification = function (request, response) {
         return false
     }
 
-    clientsModel.loadIdentification(dataClient, function (answerLoad) {
-        
-        response.json(answerLoad)
+    clientsModel.loadIdentification(dataClient, function (answerLoadI) {
+
+        response.json(answerLoadI)
     })
 
 }
@@ -272,20 +279,26 @@ clientsController.updateIdentification = function (request, response) {
         return false
     }
 
+    //para validar que el dato estadoCivil no este vacio, nulo o indefinido
+    if (dataClient.status != "Soltero" && dataClient.status != "Casado" && dataClient.status != "Unión libre") {
+        response.json({ state: false, mensaje: "Debe escribir las opciones Soltero, Casado o Unión libre" })
+        return false
+    }
+
     clientsModel.updateIdentification(dataClient, function (answerUpdate) {
-        
+
         if (answerUpdate.state = true) {
-            response.json({ state: true, mensaje: "Se actualizó correctamente" })
+            response.json({ state: true, mensaje: answerUpdate.mensaje })
         } else {
-            response.json({ state: false, mensaje: "Se presentó un error al actualizar" })
+            response.json({ state: false, mensaje: answerUpdate.mensaje })
         }
     })
 }
 
 clientsController.delete = function (request, response) {
 
-     //aquí se establecen los datos que recibe el modelo 
-     var dataClient = {
+    //aquí se establecen los datos que recibe el modelo 
+    var dataClient = {
         identification: request.body.identification,
     }
 
@@ -309,12 +322,12 @@ clientsController.delete = function (request, response) {
         return false
     }
 
-    clientsModel.delete(dataClient,function(answerDelete){
-        
-        if(answerDelete.state == true){
-            response.json({state:true,mensaje:"Se eliminó correctamente"})
-        }else{
-            response.json({state:false,mensaje:"Se presentó un error al eliminar"})
+    clientsModel.delete(dataClient, function (answerDelete) {
+
+        if (answerDelete.state == true) {
+            response.json({ state: true, mensaje: answerDelete.mensaje })
+        } else {
+            response.json({ state: false, mensaje: answerDelete.mensaje })
         }
     })
 }

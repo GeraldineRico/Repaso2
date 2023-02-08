@@ -1,0 +1,8 @@
+div#Registro {
+    width: 500px;
+    margin-left: calc(50% - 250px);
+    border: solid 1px;
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 50px;  
+}

@@ -3,14 +3,28 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { HomeComponent } from './Components/home/home.component';
+import { ContactenosComponent } from './Components/contactenos/contactenos.component';
+import { ProductosComponent } from './Components/productos/productos.component';
+import { Page404Component } from './Components/page404/page404.component';
+import { MenuComponent } from './Components/menu/menu.component';
+import { RegistroComponent } from './Components/registro/registro.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomeComponent,
+    ContactenosComponent,
+    ProductosComponent,
+    Page404Component,
+    MenuComponent,
+    RegistroComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
