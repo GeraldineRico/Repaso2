@@ -1,1 +1,22 @@
-<p>contactenos works!</p>
+<div class="container">
+    <div id="contacto">
+      <div class="form-row mt-5">
+        <div class="col-md-4 mb-3">
+          <label for="Nombre">Nombres y apellidos:</label>
+          <input type="text" class="form-control" id="Nombre" name="validarNombre" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col-md-4 mb-3">
+          <label for="Email">Correo electrónico:</label>
+          <input type="email" class="form-control" id="Email" name="validarEmail" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="Mensaje">Mensaje:</label>
+        <textarea class="form-control" id="Mensaje" name="validationMensaje" rows="3" min="25" required></textarea>
+      </div>
+      <div class="form-group mb-10">
+        <button class="btn btn-primary" type="submit" name="submit">Enviar</button>
+      </div>
+    </div>

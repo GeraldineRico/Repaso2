@@ -10,6 +10,8 @@ import { Page404Component } from './Components/page404/page404.component';
 import { MenuComponent } from './Components/menu/menu.component';
 import { RegistroComponent } from './Components/registro/registro.component';
 import { FormsModule } from '@angular/forms';
+import { FooterComponent } from './Components/footer/footer.component';
+import { LoginComponent } from './Components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { FormsModule } from '@angular/forms';
     ProductosComponent,
     Page404Component,
     MenuComponent,
-    RegistroComponent
+    RegistroComponent,
+    FooterComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

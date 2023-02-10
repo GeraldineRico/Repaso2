@@ -1,0 +1,26 @@
+.navbar{
+    background: white;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.477);
+}
+
+.navbar-fixed-top {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 999;
+}
+
+.container-fluid img{
+    width: 100px;
+    margin-left: 15px;
+}
+
+.navbar-nav a{
+    color: black;
+    font-family: 'Sofia Sans Condensed', sans-serif;
+    font-size: 20px;
+}
+
+.navbar-nav a:hover{
+    color: rgba(127, 124, 124, 0.817);
+}
