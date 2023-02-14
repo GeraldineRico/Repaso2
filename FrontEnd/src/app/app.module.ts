@@ -12,6 +12,8 @@ import { RegistroComponent } from './Components/registro/registro.component';
 import { FormsModule } from '@angular/forms';
 import { FooterComponent } from './Components/footer/footer.component';
 import { LoginComponent } from './Components/login/login.component';
+import { AlertasComponent } from './Components/alertas/alertas.component';
+import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http'
 
 @NgModule({
   declarations: [
@@ -23,12 +25,14 @@ import { LoginComponent } from './Components/login/login.component';
     MenuComponent,
     RegistroComponent,
     FooterComponent,
-    LoginComponent
+    LoginComponent,
+    AlertasComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

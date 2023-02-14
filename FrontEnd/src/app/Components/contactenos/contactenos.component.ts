@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AlertasService } from 'src/app/Services/alertas.service';
 
 @Component({
   selector: 'app-contactenos',
@@ -7,4 +8,5 @@ import { Component } from '@angular/core';
 })
 export class ContactenosComponent {
 
+  constructor(public aaa:AlertasService){}
 }

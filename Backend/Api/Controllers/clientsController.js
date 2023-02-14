@@ -15,7 +15,10 @@ clientsController.save = function (request, response) {
         adress: request.body.adress,
         phone: request.body.phone,
         age: request.body.age,
-        status: request.body.status
+        status: request.body.status,
+        email: request.body.email,
+        password: request.body.password,
+        cPassword: request.body.cPassword
     }
 
     //validaciones de los datos que esta recibiendo el controlador
@@ -112,8 +115,26 @@ clientsController.save = function (request, response) {
     }
 
     //para validar que el dato estadoCivil se llene de acuerdo a la lista especificada
-    if (dataClient.status != "Soltero" && dataClient.status != "Casado" && dataClient.status != "Unión libre") {
+    if (dataClient.status != "Soltero" && dataClient.status != "Casado" && dataClient.status != "Union libre") {
         response.json({ state: false, mensaje: "Debe escribir las opciones Soltero, Casado o Unión libre" })
+        return false
+    }
+
+    //para validar que el dato email no este vacio, nulo o indefinido
+    if (dataClient.email == "" || dataClient.email == null || dataClient.email == undefined) {
+        response.json({ state: false, mensaje: "El campo email es obligatorio" })
+        return false
+    }
+
+    //para validar que el dato password no este vacio, nulo o indefinido
+    if (dataClient.password == "" || dataClient.password == null || dataClient.password == undefined) {
+        response.json({ state: false, mensaje: "El campo contraseña es obligatorio" })
+        return false
+    }
+
+    //para validar que el dato cPassword no este vacio, nulo o indefinido
+    if (dataClient.cPassword == "" || dataClient.cPassword == null || dataClient.cPassword == undefined) {
+        response.json({ state: false, mensaje: "El campo confirmación contraseña es obligatorio" })
         return false
     }
 
@@ -183,7 +204,10 @@ clientsController.updateIdentification = function (request, response) {
         adress: request.body.adress,
         phone: request.body.phone,
         age: request.body.age,
-        status: request.body.status
+        status: request.body.status,
+        email: request.body.email,
+        password: request.body.password,
+        cPassword: request.body.cPassword
     }
 
     //validaciones de los datos que esta recibiendo el controlador
@@ -282,6 +306,24 @@ clientsController.updateIdentification = function (request, response) {
     //para validar que el dato estadoCivil no este vacio, nulo o indefinido
     if (dataClient.status != "Soltero" && dataClient.status != "Casado" && dataClient.status != "Unión libre") {
         response.json({ state: false, mensaje: "Debe escribir las opciones Soltero, Casado o Unión libre" })
+        return false
+    }
+
+    //para validar que el dato email no este vacio, nulo o indefinido
+    if (dataClient.email == "" || dataClient.email == null || dataClient.email == undefined) {
+        response.json({ state: false, mensaje: "El campo email es obligatorio" })
+        return false
+    }
+
+    //para validar que el dato password no este vacio, nulo o indefinido
+    if (dataClient.password == "" || dataClient.password == null || dataClient.password == undefined) {
+        response.json({ state: false, mensaje: "El campo contraseña es obligatorio" })
+        return false
+    }
+
+    //para validar que el dato cPassword no este vacio, nulo o indefinido
+    if (dataClient.cPassword == "" || dataClient.cPassword == null || dataClient.cPassword == undefined) {
+        response.json({ state: false, mensaje: "El campo confirmación contraseña es obligatorio" })
         return false
     }
 

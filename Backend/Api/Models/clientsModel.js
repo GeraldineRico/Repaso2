@@ -20,7 +20,10 @@ var clientsSchema = new Schema({
     status: {
         type: String,
         enum: ["Soltero", "Casado", "Unión libre"] //lista de opciones que debe recibir el campo
-    }
+    },
+    email:String,
+    password:String,
+    cPassword:String
 
 })
 
@@ -48,6 +51,9 @@ clientsModel.save = function (dataClient, callback) {
             instancia.phone = dataClient.phone
             instancia.age = dataClient.age
             instancia.status = dataClient.status
+            instancia.email = dataClient.email
+            instancia.password = dataClient.password
+            instancia.cPassword = dataClient.cPassword
             //para guardar, si genera false muestra el mensaje false del controlador, si genera true muestra el mensaje true del controlador 
             instancia.save((error, created) => {
                 if (error) {
@@ -110,7 +116,11 @@ clientsModel.updateIdentification = function (dataClient, callback) {
                         adress: dataClient.adress,
                         phone: dataClient.phone,
                         age: dataClient.age,
-                        status: dataClient.status
+                        status: dataClient.status,
+                        email: dataClient.email,
+                        password: dataClient.password,
+                        cPassword: dataClient.cPassword
+
                     }, (error, modified) => {
                         if (error) {
                             return callback({ state: false, mensaje:error })

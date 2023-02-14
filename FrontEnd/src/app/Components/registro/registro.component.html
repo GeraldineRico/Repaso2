@@ -1,15 +1,69 @@
-<div id="Registro">
-    <div class="mb-3">
-        <label for="Nombre" class="form-label">Nombre</label>
-        <input type="text" class="form-control" id="Nombre" [(ngModel)]="nombre">
-      </div>
-    <div class="mb-3">
-      <label for="email" class="form-label">Correo</label>
-      <input type="email" class="form-control" id="email" [(ngModel)]="email">
-    </div>
-    <div class="mb-3">
-      <label for="password" class="form-label">Contraseña</label>
-      <input type="password" class="form-control" id="password" [(ngModel)]="password">
-    </div>
-    <button type="submit" class="btn btn-primary" (click)="Guardar()">Registrarse</button>
+<button type="submit" class="btn btn-primary" (click)="mostrarOcultar()">Prende/Apaga {{mostrar}}</button>
+<div (click)="cargarTodas()">Cargar todas</div>
+<div id="Registro" *ngIf="mostrar">
+  <button type="submit" class="btn btn-primary" (click)="Registrar()">Registrarse</button>
+  <div class="mb-3">
+    <label for="Identificacion" class="form-label">Identificacion</label>
+    <input type="number" class="form-control" id="Identificacion" [(ngModel)]="Identificacion">
+  </div>
+  <div class="mb-3">
+    <label for="Nombre" class="form-label">Nombre</label>
+    <input type="text" class="form-control" id="Nombre" [(ngModel)]="Nombre">
+  </div>
+  <div class="mb-3">
+    <label for="Apellidos" class="form-label">Apellidos</label>
+    <input type="text" class="form-control" id="Apellidos" [(ngModel)]="Apellidos">
+  </div>
+  <div class="mb-3">
+    <label for="Edad" class="form-label">Edad</label>
+    <input type="number" class="form-control" id="Edad" [(ngModel)]="Edad">
+  </div>
+  <div class="mb-3">
+    <label for="Direccion" class="form-label">Dirección</label>
+    <input type="text" class="form-control" id="Direccion" [(ngModel)]="Direccion">
+  </div>
+  <div class="mb-3">
+    <label for="Telefono" class="form-label">Teléfono</label>
+    <input type="number" class="form-control" id="Telefono" [(ngModel)]="Telefono">
+  </div>
+  <div class="mb-3">
+    <label for="estadoC" class="form-label">Estado civil</label>
+    <select name="estadoC" class="form-control" id="EstadoC" [(ngModel)]="EstadoC">
+      <option value="Soltero">Soltero</option>
+      <option value="Casado">Casado</option>
+      <option value="Union libre">Unión libre</option>
+    </select>
+  </div>
+  <div class="mb-3">
+    <label for="email" class="form-label">Correo electrónico</label>
+    <input type="email" class="form-control" id="Email" [(ngModel)]="Email">
+  </div>
+  <div class="mb-3">
+    <label for="password" class="form-label">Contraseña</label>
+    <input type="password" class="form-control" id="Password" [(ngModel)]="Password">
+  </div>
+  <div class="mb-3">
+    <label for="password" class="form-label">Confirme su contraseña</label>
+    <input type="password" class="form-control" id="cPassword" [(ngModel)]="cPassword">
+  </div>
+  
 </div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Identificación</th>
+      <th scope="col">Apellidos</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Telefono</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of listaDatos">
+      <td>{{item.identification}}</td>
+      <td>{{item.lastName}}</td>
+      <td>{{item.name}}</td>
+      <td>{{item.phone}}</td>
+    </tr>
+  </tbody>
+</table>

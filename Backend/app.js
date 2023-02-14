@@ -25,7 +25,7 @@ var cors = require('cors')
 //se definen las direcciones que tiene acceso, mediante el "Origin", se verifica que este autorizado
 app.use(cors({
     origin: function (origin, callback) {
-        console.log(origin) // cuando se prueba con Postman genera "undefined" porque no encuentra el origen
+        
         if (!origin) return callback(null, true)
 
         if (config.listaBlanca.indexOf(origin) === -1) {
