@@ -1,11 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ClientesComponent } from './Components/clientes/clientes.component';
 import { ContactenosComponent } from './Components/contactenos/contactenos.component';
+import { DashboardAdminComponent } from './Components/dashboard-admin/dashboard-admin.component';
 import { HomeComponent } from './Components/home/home.component';
 import { LoginComponent } from './Components/login/login.component';
 import { Page404Component } from './Components/page404/page404.component';
 import { ProductosComponent } from './Components/productos/productos.component';
 import { RegistroComponent } from './Components/registro/registro.component';
+import { VentanaFlotanteComponent } from './Components/ventana-flotante/ventana-flotante.component';
 
 const routes: Routes = [
   {path: 'Home', component: HomeComponent, pathMatch: 'full'},
@@ -13,6 +16,9 @@ const routes: Routes = [
   {path: 'Productos', component: ProductosComponent, pathMatch: 'full'},
   {path: 'Registro', component: RegistroComponent, pathMatch: 'full'},
   {path: 'Login', component: LoginComponent, pathMatch: 'full'},
+  {path: 'DashboardAdmin', component: DashboardAdminComponent, pathMatch: 'full'},
+  {path: 'VentanaFlotante', component: VentanaFlotanteComponent, pathMatch: 'full'},
+  {path: 'Clientes', component: ClientesComponent, pathMatch: 'full'},
   {path:'', component: HomeComponent, pathMatch: 'full'},
   {path:'**', component: Page404Component, pathMatch: 'full'}
 

@@ -1,6 +1,6 @@
 .navbar{
     background: white;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.477);
+    box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.349);
 }
 
 .navbar-fixed-top {

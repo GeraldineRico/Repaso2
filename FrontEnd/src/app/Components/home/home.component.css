@@ -11,73 +11,85 @@
     margin: auto;
 }
 
-#cPrincipal{
-    font-family: 'Sofia Sans Condensed', sans-serif;
-    font-size: 20px;
-    text-align: center;
-    height: 100%;
-    margin-top: 40px;
-    display: block;
-    align-items: center;
+#titulo {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.349);
+    border-radius: 5px 1px 1px 5px;
+    width: 540px;
+    text-align: left;
+    position: absolute;
+    right: 0px;
+    margin-top: 20px;
+    padding-top: 6px;
+    
 }
 
-.card{
-    margin-left: 10px;
-    border: none;
-    width: 270px;
-    height: 350px;
-    border-radius: 5px;
-    padding-top: 0px;
+#titulo h2{
+    color: black;
+    font-family: 'Sofia Sans Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 45px;
+}
+
+.container{
+    margin-top: 95px;
+}
+
+#contenedorProductos{
+    display: flex;
+    text-align: center;
+    font-family: 'Sofia Sans Condensed', sans-serif;
+}
+
+#cardProduct{
+    margin: auto;
     margin-top: 20px;
+    margin-bottom: 30px;
     transition: 1s;
 }
 
-.card:hover{
+#cardProduct:hover{
     transform: scale(1.1);
-    box-shadow: 1px 1px 2px 1px rgba(28, 28, 28, 0.345);
-}
-
-.imgP1{
-    height: 200px;
-    width: 200px;
+    box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.349);
 }
 
 .card-body h5{
-    margin-top: 10px;
-    font-family: 'Sofia Sans Condensed', sans-serif;
-    font-size: 20px;
+    font-size: 23px;
 }
 
-.card-body p{
-    font-family: 'Sofia Sans Condensed', sans-serif;
-    font-size: 15px;
+#colBoton {
+    display: flex;
+    justify-content: space-evenly;
 }
 
-.card-body a{
-    font-family: 'Sofia Sans Condensed', sans-serif;
-    font-size: 12px;
-    background-color: black;
-    box-shadow: 0px 8px 32px rgba(0, 0, 0, 0.737);
+#colBoton a{
     border: none;
+    background: none;
+    color: black;
 }
+
+#colBoton a:hover{
+    background: black;
+    color: white;
+    box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.349);
+    
+}
+
 
 #cSecundario{
     background-image: url("/../../assets/img/Ciudad1.png");
     background-size: cover;
     background-repeat: no-repeat;
-    height: 250px;
+    height: 350px;
     display: block;
     text-align: center;
     margin-top: 30px;
-    margin-bottom: 30px;
     display: block;
     align-items: center;
 }
 
 #caja{
     margin: auto;
-    margin-top: 30px;
-    width: 10px;
+    margin-top: 75px;
     border-left: solid 2px white;
 }
 
@@ -92,4 +104,3 @@
     color: white;
     font-family: 'Sofia Sans Condensed', sans-serif;
 }
-

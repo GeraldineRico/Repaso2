@@ -13,7 +13,11 @@ import { FormsModule } from '@angular/forms';
 import { FooterComponent } from './Components/footer/footer.component';
 import { LoginComponent } from './Components/login/login.component';
 import { AlertasComponent } from './Components/alertas/alertas.component';
-import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http'
+import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
+import { DashboardAdminComponent } from './Components/dashboard-admin/dashboard-admin.component';
+import { MenuLateralComponent } from './Components/menu-lateral/menu-lateral.component';
+import { VentanaFlotanteComponent } from './Components/ventana-flotante/ventana-flotante.component';
+import { ClientesComponent } from './Components/clientes/clientes.component'
 
 @NgModule({
   declarations: [
@@ -26,7 +30,11 @@ import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http'
     RegistroComponent,
     FooterComponent,
     LoginComponent,
-    AlertasComponent
+    AlertasComponent,
+    DashboardAdminComponent,
+    MenuLateralComponent,
+    VentanaFlotanteComponent,
+    ClientesComponent
   ],
   imports: [
     BrowserModule,

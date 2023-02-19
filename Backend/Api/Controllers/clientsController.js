@@ -9,7 +9,7 @@ clientsController.save = function (request, response) {
 
     //aquí se establecen los datos que recibe el modelo 
     var dataClient = {
-        identification: request.body.identification,
+        identification: request.body.identification.toString(),
         name: request.body.name,
         lastName: request.body.lastName,
         adress: request.body.adress,
@@ -20,7 +20,7 @@ clientsController.save = function (request, response) {
         password: request.body.password,
         cPassword: request.body.cPassword
     }
-
+    
     //validaciones de los datos que esta recibiendo el controlador
 
     //para validar que el dato cedula no este vacio, nulo o indefinido

@@ -1,1 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
+.ventanaFlotante {
+    position: absolute;
+    background-image: url("/../../assets/img/ciudadVentana.jpg");
+    background-size:cover;
+    background-repeat: no-repeat;
+    top: 50px;
+    left: 175px;
+    width: calc(100% - 175px);
+    height: calc(100vh - 50px);
+}

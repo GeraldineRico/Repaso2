@@ -1,14 +1,45 @@
-div#Registro {
+#contenedor-registro{
+    background-image: url("/../../assets/img/ciudadRegistro.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100%;
+    margin-top: 78px;
     display: block;
-    width: 500px;
-    margin-left: calc(50% - 250px);
-    border: solid 1px;
-    border-radius: 5px;
-    padding: 50px;
-    margin-top: 150px;  
-    margin-bottom: 100px;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
-.btn{
-    margin-top: 100px;
+.container{
+    margin: auto;
+    margin-top: 30px;
+    margin-bottom: 50px;
+    background: rgba(0, 0, 0, 0.466);
+    border-radius: 5px;
+}
+
+h2{
+    color: white;
+    font-family: 'Sofia Sans Condensed', sans-serif;
+
+}
+
+label{
+    color: white;
+    font-family: 'Sofia Sans Condensed', sans-serif;;
+}
+
+button{
+    font-family: 'Sofia Sans Condensed', sans-serif;
+    font-size: 15px;
+    background: black;
+    border: none;
+}
+
+button:hover{
+    background: white;
+    color: black;
+}
+
+span{
+    color: white;
 }

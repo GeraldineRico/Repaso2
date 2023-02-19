@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+declare var $:any
 
 @Component({
   selector: 'app-menu',
@@ -8,5 +9,9 @@ import { Component } from '@angular/core';
 export class MenuComponent {
   prueba (){
     
+  }
+
+  cerrarMenu(){
+    $('#myTab').tab('hide')
   }
 }

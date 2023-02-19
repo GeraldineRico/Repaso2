@@ -1,41 +1,44 @@
 .footer{
-    height: 350px;
-    background-image: url("/../../assets/img/CiudadF.png");
-    background-size: cover;
-    background-repeat: no-repeat;
-    display: flex;
-    margin-bottom: 0px;
+    height: 100%;
+    background: black;
 }
 
-.fondo{
-    height: 175px;
-    width: 100%;
-    background: #181717;
-    display: flex;
-}
-
-.fondo h3{
-    margin-top: 20px;
-    font-family: 'Sofia Sans Condensed', sans-serif;
-    color: white;
+#colImg{
+    display: block;
+    margin: auto;
     text-align: center;
 }
 
-.col{
-    display: flex;
+#colImg img{
+    width: 150px;
+    height: 100px;
 }
 
-.col h4{
-    margin: auto;
-    color: white;
-    font-size: 20px;
-    text-align: center;
+#colImg p{
     font-family: 'Sofia Sans Condensed', sans-serif;
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.537);
 }
 
-.col i{
-    margin: auto;
-    color: white;
+#colIconos{
+    display: flex;
     font-size: 60px;
-    margin-top: 65px;
 }
+
+#colIconos i{
+    margin:auto;
+}
+
+#colIconos i:hover{
+    color: white;
+    transform: scale(1.1);
+}
+
+#reserva{
+    background: black;
+    width: 100%;
+    text-align: center;
+    font-family: 'Sofia Sans Condensed', sans-serif;
+    font-size: 15px;
+}
+
