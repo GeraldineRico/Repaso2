@@ -1,11 +1,11 @@
-var clientsModel = {} // objeto que contiene los modelos
+var adminsModel = {} // objeto que contiene los modelos
 const mongoose = require('mongoose') //para importar mongoose
 
 //se crea el esquema de mongo
 const Schema = mongoose.Schema;
 
 //se definen los tipos que tiene el esquema
-var clientsSchema = new Schema({
+var adminsSchema = new Schema({
 
     identification: {
         type: Number,
@@ -29,13 +29,13 @@ var clientsSchema = new Schema({
 })
 
 //se crea la coleccion en la base de datos y se le asigna el esquema 
-const cModel = mongoose.model('clients', clientsSchema)
+const cModel = mongoose.model('admins', adminsSchema)
 
 
 // el modelo recibe los datos del controlador por medio del post, el modelo los procesa y retorna un callback "respuesta" al controlador
-clientsModel.save = function (dataClient, callback) {
+adminsModel.save = function (dataAdmin, callback) {
     //primero se valida si existe la cédula, en caso contrario continua con el guardado
-    cModel.findOne({ identification: dataClient.identification }, (error, result) => {
+    cModel.findOne({ identification: dataAdmin.identification }, (error, result) => {
         if (error) {
             return callback({ state: false, mensaje: error })
         }
@@ -45,24 +45,24 @@ clientsModel.save = function (dataClient, callback) {
 
             //se establece que este documento se guarda en la colección "clients"
             const instancia = new cModel
-            instancia.identification = dataClient.identification
-            instancia.name = dataClient.name
-            instancia.lastName = dataClient.lastName
-            instancia.adress = dataClient.adress
-            instancia.phone = dataClient.phone
-            instancia.age = dataClient.age
-            instancia.status = dataClient.status
-            instancia.email = dataClient.email
-            instancia.password = dataClient.password
-            instancia.cPassword = dataClient.cPassword
-            instancia.rol = "2"
+            instancia.identification = dataAdmin.identification
+            instancia.name = dataAdmin.name
+            instancia.lastName = dataAdmin.lastName
+            instancia.adress = dataAdmin.adress
+            instancia.phone = dataAdmin.phone
+            instancia.age = dataAdmin.age
+            instancia.status = dataAdmin.status
+            instancia.email = dataAdmin.email
+            instancia.password = dataAdmin.password
+            instancia.cPassword = dataAdmin.cPassword
+            instancia.rol = "1"
             //para guardar, si genera false muestra el mensaje false del controlador, si genera true muestra el mensaje true del controlador 
             instancia.save((error, created) => {
                 if (error) {
                     return callback({ state: false, mensaje: error })
                 }
                 else {
-                    return callback({ state: true, mensaje: "Cliente guardado correctamente" })
+                    return callback({ state: true, mensaje: "Administrador guardado correctamente" })
                 }
             })
 
@@ -72,7 +72,7 @@ clientsModel.save = function (dataClient, callback) {
 }
 
 // en este caso el modelo no recibe datos ya que solamente los debe cargar lo que se guardo, por eso queda Null y retorna un callback "respuesta" al controlador
-clientsModel.loadAll = function (dataClient, callback) {
+adminsModel.loadAll = function (dataAdmin, callback) {
 
     cModel.find({}, { _id: 0, identification: 1, name: 1, lastName: 1, phone: 1 }, (error, answerLoadA) => {
         if (error) {
@@ -86,10 +86,10 @@ clientsModel.loadAll = function (dataClient, callback) {
 }
 
 // el modelo recibe los datos del controlador por medio del post, el modelo los procesa y retorna un callback "respuesta" al controlador
-clientsModel.loadIdentification = function (dataClient, callback) {
+adminsModel.loadIdentification = function (dataAdmin, callback) {
 
     //buscar la cédula
-    cModel.find({ identification: dataClient.identification }, {}, (error, answerLoadI) => {
+    cModel.find({ identification: dataAdmin.identification }, {}, (error, answerLoadI) => {
         if (error) {
             return callback({ state: false, mensaje: error })
         }
@@ -102,9 +102,9 @@ clientsModel.loadIdentification = function (dataClient, callback) {
 }
 
 // el modelo recibe los datos del controlador por medio del post, el modelo los procesa y retorna un callback "respuesta" al controlador
-clientsModel.updateIdentification = function (dataClient, callback) {
+adminsModel.updateIdentification = function (dataAdmin, callback) {
 
-    cModel.find({ identification: dataClient.identification }, {}, (error, answerUpdate) => {
+    cModel.find({ identification: dataAdmin.identification }, {}, (error, answerUpdate) => {
         if (error) {
             return callback({ state: false, mensaje: error })
         }
@@ -112,22 +112,22 @@ clientsModel.updateIdentification = function (dataClient, callback) {
             if (answerUpdate.length > 0) {
                 cModel.findByIdAndUpdate(answerUpdate[0]._id,
                     {
-                        name: dataClient.name,
-                        lastName: dataClient.lastName,
-                        adress: dataClient.adress,
-                        phone: dataClient.phone,
-                        age: dataClient.age,
-                        status: dataClient.status,
-                        email: dataClient.email,
-                        password: dataClient.password,
-                        cPassword: dataClient.cPassword
+                        name: dataAdmin.name,
+                        lastName: dataAdmin.lastName,
+                        adress: dataAdmin.adress,
+                        phone: dataAdmin.phone,
+                        age: dataAdmin.age,
+                        status: dataAdmin.status,
+                        email: dataAdmin.email,
+                        password: dataAdmin.password,
+                        cPassword: dataAdmin.cPassword
 
                     }, (error, modified) => {
                         if (error) {
                             return callback({ state: false, mensaje:error })
                         }
                         else {
-                            return callback({ state: true, mensaje:"Cliente actualizado correctamente"})
+                            return callback({ state: true, mensaje:"Administrador actualizado correctamente"})
                         }
                     })
             } else {
@@ -138,9 +138,9 @@ clientsModel.updateIdentification = function (dataClient, callback) {
 }
 
 // el modelo recibe los datos del controlador por medio del post, el modelo los procesa y retorna un callback "respuesta" al controlador
-clientsModel.delete = function (dataClient, callback) {
+adminsModel.delete = function (dataAdmin, callback) {
 
-    cModel.find({ identification: dataClient.identification }, {}, (error, answerDelete) => {
+    cModel.find({ identification: dataAdmin.identification }, {}, (error, answerDelete) => {
         if (error) {
             return callback({ state: false, mensaje: error })
         }
@@ -151,7 +151,7 @@ clientsModel.delete = function (dataClient, callback) {
                         return callback({ state: false, mensaje: error })
                     }
                     else {
-                        return callback({ state: true, mensaje:"Cliente borrado"})
+                        return callback({ state: true, mensaje:"Administrador borrado"})
                     }
                 })
             } else {
@@ -161,4 +161,24 @@ clientsModel.delete = function (dataClient, callback) {
     })
 }
 
-module.exports.modelClients = clientsModel // para exportar los modelos y que se puedan usar en los controladores
+adminsModel.Login = function (dataAdmin, callback) {
+    
+    //buscar email y password
+    cModel.find({ email: dataAdmin.email, password: dataAdmin.password}, {name:1,rol:1}, (error, answerLoadL) => {
+        if (error) {
+            return callback({ state: false, mensaje: error })
+        }
+        else {
+            if(answerLoadL.length == 0){
+                return callback({state:false, mensaje: "Datos invalidos"})
+            }else{
+                return callback({ state: true, mensaje: answerLoadL })
+            }
+            
+        }
+    })
+
+
+}
+
+module.exports.modelAdmins = adminsModel // para exportar los modelos y que se puedan usar en los controladores

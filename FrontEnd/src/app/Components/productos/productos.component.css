@@ -1,29 +1,54 @@
-.container-fluid{
+.container-fluid {
     font-family: 'Sofia Sans Condensed', sans-serif;
     font-size: 20px;
     height: 100%;
-    background: red;
     margin-top: 70px;
     display: block;
 }
 
-.card{
+#titulo {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.349);
+    border-radius: 5px 1px 1px 5px;
+    width: 540px;
+    text-align: left;
+    position: absolute;
+    right: 0px;
+    margin-top: 20px;
+    padding-top: 6px;
+    
+}
+
+#categorias{
+    margin-top: 100px;
+}
+
+#titulo h2{
+    color: black;
+    font-family: 'Sofia Sans Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 45px;
+}
+
+.card {
     display: flex;
     margin: auto;
     margin-top: 50px;
-    margin-bottom: 20px;
+    margin-bottom: 50px;
     transition: 1s;
     height: 383px;
 }
 
-.card:hover{
+.card:hover {
     transform: scale(1.1);
 }
 
-.card-body p{
+.card-body p {
     font-family: 'Sofia Sans Condensed', sans-serif;
     font-weight: 600;
     font-size: 25px;
     text-align: center;
     margin-top: -80px;
+    color: white;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.349);
 }

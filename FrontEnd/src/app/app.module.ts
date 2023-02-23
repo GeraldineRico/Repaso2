@@ -18,6 +18,7 @@ import { DashboardAdminComponent } from './Components/dashboard-admin/dashboard-
 import { MenuLateralComponent } from './Components/menu-lateral/menu-lateral.component';
 import { VentanaFlotanteComponent } from './Components/ventana-flotante/ventana-flotante.component';
 import { ClientesComponent } from './Components/clientes/clientes.component'
+import { InterceptorInterceptor } from './interceptors/interceptor.interceptor';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,13 @@ import { ClientesComponent } from './Components/clientes/clientes.component'
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: InterceptorInterceptor,
+      multi:true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

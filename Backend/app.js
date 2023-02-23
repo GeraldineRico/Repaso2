@@ -19,6 +19,17 @@ app.all('*',function(request,response,next){
     next()
 }) 
 
+var session = require('express-session')({
+    secret: "claveOculta",
+    resave: true,
+    saveUninitialized: true,
+    cookie: {path:"/",httpOnly:true,maxAge:30000},
+    name:'FinalCookie',
+    rolling:true
+})
+
+app.use(session)
+
 //para indicar que la app usa la libreria cors 
 var cors = require('cors')
 
