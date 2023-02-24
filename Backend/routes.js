@@ -29,6 +29,10 @@ app.post("/clients/delete",function(request,response){
     clientsController.delete(request,response)
 })
 
+app.post("/clients/login",function(request,response){
+    adminsController.Login(request,response)
+})
+
 
 
 

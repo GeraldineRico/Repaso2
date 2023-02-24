@@ -161,4 +161,24 @@ clientsModel.delete = function (dataClient, callback) {
     })
 }
 
+clientsModel.Login = function (dataClient, callback) {
+    
+    //buscar email y password
+    cModel.find({ email: dataClient.email, password: dataClient.password}, {name:1,rol:1}, (error, answerLoadL) => {
+        if (error) {
+            return callback({ state: false, mensaje: error })
+        }
+        else {
+            if(answerLoadL.length == 0){
+                return callback({state:false, mensaje: "Datos invalidos"})
+            }else{
+                return callback({ state: true, mensaje: answerLoadL })
+            }
+            
+        }
+    })
+
+
+}
+
 module.exports.modelClients = clientsModel // para exportar los modelos y que se puedan usar en los controladores

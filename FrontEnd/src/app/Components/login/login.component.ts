@@ -58,7 +58,7 @@ export class LoginComponent {
   iniciarSesion() {
     var post = {
       host: this.peticion.urlLocal,
-      path: "/admins/login",
+      path: "/clients/login",
       payload: {
         email: this.Email,
         password: this.Password,

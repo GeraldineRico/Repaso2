@@ -20,7 +20,7 @@ clientsController.save = function (request, response) {
         password: request.body.password.toString(),
         cPassword: request.body.cPassword
     }
-    console.log(dataClient)
+    
     //validaciones de los datos que esta recibiendo el controlador
 
     //para validar que el dato cedula no este vacio, nulo o indefinido
@@ -411,6 +411,44 @@ clientsController.delete = function (request, response) {
             response.json({ state: false, mensaje: answerDelete.mensaje })
         }
     })
+}
+
+clientsController.Login = function (request, response) {
+
+    //aquí se establecen los datos que recibe el modelo 
+    var dataClient = {
+        email: request.body.email,
+        password: request.body.password,
+    }
+
+    //validaciones de los datos que esta recibiendo el controlador
+
+    //para validar que el dato cedula no este vacio, nulo o indefinido
+    if (dataClient.email == "" || dataClient.email == null || dataClient.email == undefined) {
+        response.json({ state: false, mensaje: "El campo email es obligatorio" })
+        return false
+    }
+
+    if (dataClient.password == "" || dataClient.password == null || dataClient.password == undefined) {
+        response.json({ state: false, mensaje: "El campo password es obligatorio" })
+        return false
+    }
+
+    clientsModel.Login(dataClient, function (answerLoadL) {
+        if(answerLoadL.state == true){
+
+            //datos que se almacenan en la sesion al hacer login correcto
+            request.session.nombre = answerLoadL.mensaje[0].name
+            request.session.rol = answerLoadL.mensaje[0].rol
+            request.session._id = answerLoadL.mensaje[0]._id
+            
+            response.json({state:true, mensaje:"Bienvenido"})
+        }
+        else{
+            response.json({state:false, mensaje:"Usuario o contraseña invalido"})
+        }
+    })
+
 }
 
 module.exports.controllerClients = clientsController // para exportar los controladores y que se puedan usar en las rutas
