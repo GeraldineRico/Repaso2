@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Route, Router } from '@angular/router';
+import { PeticionService } from 'src/app/Services/peticion.service';
 
 @Component({
   selector: 'app-menu-lateral',
@@ -8,17 +9,29 @@ import { Route, Router } from '@angular/router';
 })
 export class MenuLateralComponent {
 
-  constructor(private router:Router){
+  constructor(private router: Router, private peticion: PeticionService) {
 
   }
 
   datosMenu = [
-    {nombre:'Dashboard',destino:'/DashboardAdmin'},
-    {nombre:'Clientes',destino:'/Clientes'},
-    {nombre:'Ventana flotante',destino:'/VentanaFlotante'}
+    { nombre: 'Dashboard', destino: '/DashboardAdmin' },
+    { nombre: 'Clientes', destino: '/Clientes' },
+    { nombre: 'Ventana flotante', destino: '/VentanaFlotante' }
   ]
 
-  cerrarSesion(){
-    this.router.navigate(['/'])
+  cerrarSesion() {
+    var post = {
+      host: this.peticion.urlLocal,
+      path: "/cerrarSesion",
+      payload: {}
+    }
+
+    this.peticion.post(post.host + post.path, post.payload).then(
+      (respuesta: any) => {
+        this.router.navigate(['/Login'])
+        }
+      )   
+
+    
   }
 }

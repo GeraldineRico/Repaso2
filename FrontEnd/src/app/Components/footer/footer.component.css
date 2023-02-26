@@ -3,6 +3,10 @@
     background: black;
 }
 
+#rowOne{
+    width: 100%;
+}
+
 #colImg{
     display: block;
     margin: auto;
@@ -34,11 +38,13 @@
     transform: scale(1.1);
 }
 
-#reserva{
+#derechos{
     background: black;
     width: 100%;
     text-align: center;
     font-family: 'Sofia Sans Condensed', sans-serif;
     font-size: 15px;
 }
+
+
 

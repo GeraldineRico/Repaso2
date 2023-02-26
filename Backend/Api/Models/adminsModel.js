@@ -29,13 +29,13 @@ var adminsSchema = new Schema({
 })
 
 //se crea la coleccion en la base de datos y se le asigna el esquema 
-const cModel = mongoose.model('admins', adminsSchema)
+const aModel = mongoose.model('admins', adminsSchema)
 
 
 // el modelo recibe los datos del controlador por medio del post, el modelo los procesa y retorna un callback "respuesta" al controlador
 adminsModel.save = function (dataAdmin, callback) {
     //primero se valida si existe la cédula, en caso contrario continua con el guardado
-    cModel.findOne({ identification: dataAdmin.identification }, (error, result) => {
+    aModel.findOne({ identification: dataAdmin.identification }, (error, result) => {
         if (error) {
             return callback({ state: false, mensaje: error })
         }
@@ -44,7 +44,7 @@ adminsModel.save = function (dataAdmin, callback) {
         } else {
 
             //se establece que este documento se guarda en la colección "clients"
-            const instancia = new cModel
+            const instancia = new aModel
             instancia.identification = dataAdmin.identification
             instancia.name = dataAdmin.name
             instancia.lastName = dataAdmin.lastName
@@ -74,7 +74,7 @@ adminsModel.save = function (dataAdmin, callback) {
 // en este caso el modelo no recibe datos ya que solamente los debe cargar lo que se guardo, por eso queda Null y retorna un callback "respuesta" al controlador
 adminsModel.loadAll = function (dataAdmin, callback) {
 
-    cModel.find({}, { _id: 0, identification: 1, name: 1, lastName: 1, phone: 1 }, (error, answerLoadA) => {
+    aModel.find({}, { _id: 0, identification: 1, name: 1, lastName: 1, phone: 1 }, (error, answerLoadA) => {
         if (error) {
             return callback({ state: false, data: error })
         }
@@ -89,7 +89,7 @@ adminsModel.loadAll = function (dataAdmin, callback) {
 adminsModel.loadIdentification = function (dataAdmin, callback) {
 
     //buscar la cédula
-    cModel.find({ identification: dataAdmin.identification }, {}, (error, answerLoadI) => {
+    aModel.find({ identification: dataAdmin.identification }, {}, (error, answerLoadI) => {
         if (error) {
             return callback({ state: false, mensaje: error })
         }
@@ -104,13 +104,13 @@ adminsModel.loadIdentification = function (dataAdmin, callback) {
 // el modelo recibe los datos del controlador por medio del post, el modelo los procesa y retorna un callback "respuesta" al controlador
 adminsModel.updateIdentification = function (dataAdmin, callback) {
 
-    cModel.find({ identification: dataAdmin.identification }, {}, (error, answerUpdate) => {
+    aModel.find({ identification: dataAdmin.identification }, {}, (error, answerUpdate) => {
         if (error) {
             return callback({ state: false, mensaje: error })
         }
         else {
             if (answerUpdate.length > 0) {
-                cModel.findByIdAndUpdate(answerUpdate[0]._id,
+                aModel.findByIdAndUpdate(answerUpdate[0]._id,
                     {
                         name: dataAdmin.name,
                         lastName: dataAdmin.lastName,
@@ -140,13 +140,13 @@ adminsModel.updateIdentification = function (dataAdmin, callback) {
 // el modelo recibe los datos del controlador por medio del post, el modelo los procesa y retorna un callback "respuesta" al controlador
 adminsModel.delete = function (dataAdmin, callback) {
 
-    cModel.find({ identification: dataAdmin.identification }, {}, (error, answerDelete) => {
+    aModel.find({ identification: dataAdmin.identification }, {}, (error, answerDelete) => {
         if (error) {
             return callback({ state: false, mensaje: error })
         }
         else {
             if (answerDelete.length > 0) {
-                cModel.findByIdAndDelete(answerDelete[0]._id, (error, deleted) => {
+                aModel.findByIdAndDelete(answerDelete[0]._id, (error, deleted) => {
                     if (error) {
                         return callback({ state: false, mensaje: error })
                     }
@@ -164,7 +164,7 @@ adminsModel.delete = function (dataAdmin, callback) {
 adminsModel.Login = function (dataAdmin, callback) {
     
     //buscar email y password
-    cModel.find({ email: dataAdmin.email, password: dataAdmin.password}, {name:1,rol:1}, (error, answerLoadL) => {
+    aModel.find({ email: dataAdmin.email, password: dataAdmin.password}, {name:1,rol:1}, (error, answerLoadL) => {
         if (error) {
             return callback({ state: false, mensaje: error })
         }

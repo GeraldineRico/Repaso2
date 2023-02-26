@@ -18,7 +18,7 @@ export class InterceptorInterceptor implements HttpInterceptor {
 
   //configuración del interceptor
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    
+    console.log("interceptando petición")
     this.requestOption = {
       Headers: new HttpHeaders({
         "Content-Type": "application/json;charset=UTF-8"

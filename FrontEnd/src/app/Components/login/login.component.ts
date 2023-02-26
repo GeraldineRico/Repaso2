@@ -18,6 +18,7 @@ export class LoginComponent {
   Password: string = ""
 
 
+  //para validar desde el frontend los datos que llegan
   validacionLogin(): boolean {
 
     //para validar que el dato email no este vacio, nulo o indefinido
@@ -73,12 +74,23 @@ export class LoginComponent {
             this.alert.load("danger", respuesta.mensaje)
           } else {
             this.alert.load("success", respuesta.mensaje)
-            this.router.navigate(['/DashboardAdmin'])
+            this.router.navigate(['/Home'])
           }
         })
     }
 
 
+
+  }
+
+  verCookie() {
+    var post = {
+      host: this.peticion.urlLocal,
+      path: "/clients/verCookie",
+      payload: {
+  
+      }
+    }
 
   }
 }

@@ -435,6 +435,7 @@ clientsController.Login = function (request, response) {
     }
 
     clientsModel.Login(dataClient, function (answerLoadL) {
+        
         if(answerLoadL.state == true){
 
             //datos que se almacenan en la sesion al hacer login correcto
