@@ -24,8 +24,9 @@ var clientsSchema = new Schema({
     email:String,
     password:String,
     cPassword:String,
-    rol:Number
-
+    rol:Number,
+    estado:Number,
+    codigo:String
 })
 
 //se crea la coleccion en la base de datos y se le asigna el esquema 
@@ -56,6 +57,9 @@ clientsModel.save = function (dataClient, callback) {
             instancia.password = dataClient.password
             instancia.cPassword = dataClient.cPassword
             instancia.rol = "2"
+            instancia.estado = "0" // estado 0 inactivo 1 activo para envio de correo de validación de cuenta
+            instancia.codigo = dataClient.codigo // este codigo se crea en backend y viene desde el controlador
+
             //para guardar, si genera false muestra el mensaje false del controlador, si genera true muestra el mensaje true del controlador 
             instancia.save((error, created) => {
                 if (error) {
@@ -164,7 +168,7 @@ clientsModel.delete = function (dataClient, callback) {
 clientsModel.Login = function (dataClient, callback) {
     
     //buscar email y password
-    cModel.find({ email: dataClient.email, password: dataClient.password}, {name:1,rol:1}, (error, answerLoadL) => {
+    cModel.find({ email: dataClient.email, password: dataClient.password}, {name:1,rol:2}, (error, answerLoadL) => {
         if (error) {
             return callback({ state: false, mensaje: error })
         }
@@ -179,6 +183,51 @@ clientsModel.Login = function (dataClient, callback) {
     })
 
 
+}
+
+// funcion que valida el estado del cliente 0 inactivo o 1 activo
+clientsModel.validarEstadoCliente = function (dataClient, callback) {
+
+    //buscar el email y muestra el estado 0 o 1 para indicar al usuario si debe validar la cuenta o no
+    cModel.find({email: dataClient.email}, {estado:1}, (error, answerState) => {
+        if (error) {
+            return callback({ state: false, mensaje: error })
+        }
+        else {
+            return callback({ state: true, mensaje: answerState })
+        }
+    })
+
+
+}
+
+clientsModel.Activar = function (dataClient, callback) {
+
+    //buscar el email y codigo
+    cModel.find({email: dataClient.email, codigo: dataClient.codigo}, {estado:1}, (error, answerState) => {
+        if (error) {
+            return callback({ state: false, mensaje: error })
+        }
+        else {
+            return callback({ state: true, mensaje: answerState })
+        }
+    })
+
+
+}
+
+clientsModel.actualizarEstado = function (dataClient, callback){
+
+    cModel.findByIdAndUpdate(dataClient.id,{
+        estado:1,
+    },(error,modificado) =>{
+        if(error){
+            return callback({state:false, mensaje: error})
+        }
+        else{
+            return callback({state:true})
+        }
+    })
 }
 
 module.exports.modelClients = clientsModel // para exportar los modelos y que se puedan usar en los controladores

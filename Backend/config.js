@@ -6,4 +6,12 @@ config.listaBlanca = [ //direcciones que van a tener acceso a la app
     'http://localhost:4200'
 ]
 config.db = "ByGUrban"
+config.tiempoSession = (60000 * 30)
+config.claveOculta = "claveOculta"
+config.cookieName = 'FinalCookie'
+config.host = "smtp.gmail.com"
+config.port = 587
+config.user = "bygurbanc@gmail.com"
+config.pass = "qpaesblbcdhmdhhf"
+
 module.exports.configuracion = config // exportar la configuración para que sea pueda usar

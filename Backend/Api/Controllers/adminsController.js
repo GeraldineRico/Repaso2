@@ -442,7 +442,7 @@ adminsController.Login = function (request, response) {
             request.session.rol = answerLoadL.mensaje[0].rol
             request.session._id = answerLoadL.mensaje[0]._id
             
-            response.json({state:true, mensaje:"Bienvenido"})
+            response.json({state:true, mensaje:"Bienvenido Admin"})
         }
         else{
             response.json({state:false, mensaje:"Usuario o contraseña invalido"})

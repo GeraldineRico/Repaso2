@@ -47,27 +47,35 @@ app.post("/clients/verCookie", function (request, response) {
     response.json({ clave: request.session })
 })
 
-app.post("/clients/menuPrincipal",validarSession, function (request, response) {
+app.post("/clients/menuPrincipal", function (request, response) {
+    var menu = [
+        { nombre: 'HOME', destino: '/Home' },
+        { nombre: 'CATEGORIAS', destino: '/Productos' },
+        { nombre: 'FAVORITOS', destino: '/Favoritos' },
+        { nombre: 'PERFIL', destino: '/Miperfil' },
+        { nombre: 'SALIR', destino: '/Home'}
+    ]
     if (request.session.rol == 2) {
         response.json({
-            state: true, menu: [
-                { nombre: 'HOME', destino: '/Home' },
-                { nombre: 'CATEGORIAS', destino: '/Productos' },
-                { nombre: 'FAVORITOS', destino: '/Favoritos' },
-                { nombre: 'PERFIL', destino: '/Miperfil' },
-                { nombre: 'SALIR', destino: '/Home'}
-            ]
+            state: true, menu: menu
         })
     }
     else{
+        var menu = [
+            { nombre: 'HOME', destino: '/Home' },
+            { nombre: 'CATEGORIAS', destino: '/Productos' },
+            { nombre: 'REGISTRO', destino: '/Registro' }
+        ]
+        console.log(request.session)
         response.json({
-            state: false, menu: [
-                { nombre: 'HOME', destino: '/Home' },
-                { nombre: 'CATEGORIAS', destino: '/Productos' },
-                { nombre: 'REGISTRO', destino: '/Registro' }
-            ]
+            state: false, menu: menu 
         })
     }
+})
+
+//se crea una peticion de tipo get para que reciba dos datos email y codigo y que el ciente se valide por medio de link
+app.get("/activar/:email/:codigo", function (request, response){
+    clientsController.Activar(request,response)
 })
 
 

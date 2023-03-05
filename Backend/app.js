@@ -5,6 +5,7 @@ var bodyParser = require('body-parser')
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true })) //importar body-parser para que permita trabajar con peticiones tipo POST
 const mongoose = require('mongoose') //para importar mongoose
+const MongoStore = require('connect-mongo') // para que la cookie se guarde en mongo
 
 
 //para definir el tipo de peticiones que va a recibir la app, direcciones web que pueden ingresar(cabeceras)
@@ -20,12 +21,13 @@ app.all('*',function(request,response,next){
 }) 
 
 var session = require('express-session')({
-    secret: "claveOculta",
+    secret: config.claveOculta,
     resave: true,
     saveUninitialized: true,
-    cookie: {path:"/",httpOnly:true,maxAge:30000},
-    name:'FinalCookie',
-    rolling:true
+    cookie: {path:"/",httpOnly:true, maxAge: config.tiempoSession},
+    name: config.cookieName,
+    rolling:true,
+    store: MongoStore.create({mongoUrl: 'mongodb://127.0.0.1:27017/' + config.db + 'Cookie'})
 })
 
 app.use(session)

@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { forkJoin } from 'rxjs';
 import { AlertasService } from 'src/app/Services/alertas.service';
+import { MenuService } from 'src/app/Services/menu.service';
 import { PeticionService } from 'src/app/Services/peticion.service';
 
 @Component({
@@ -10,12 +12,13 @@ import { PeticionService } from 'src/app/Services/peticion.service';
 })
 export class LoginComponent {
 
-  constructor(public alert: AlertasService, private peticion: PeticionService, private router: Router) {
+  constructor(public alert: AlertasService, private peticion: PeticionService, private router: Router, private menu:MenuService) {
 
   }
 
   Email: string = ""
   Password: string = ""
+  rutas: string = "/clients/login"
 
 
   //para validar desde el frontend los datos que llegan
@@ -59,7 +62,7 @@ export class LoginComponent {
   iniciarSesion() {
     var post = {
       host: this.peticion.urlLocal,
-      path: "/clients/login",
+      path: this.rutas,
       payload: {
         email: this.Email,
         password: this.Password,
@@ -74,23 +77,31 @@ export class LoginComponent {
             this.alert.load("danger", respuesta.mensaje)
           } else {
             this.alert.load("success", respuesta.mensaje)
-            this.router.navigate(['/Home'])
+            this.menu.cargarMenuPrincipal()
+
+            if(this.rutas === "/clients/login"){
+              this.router.navigate(['/Home'])
+            }else if(this.rutas === "/admins/login"){
+              this.router.navigate(['/DashboardAdmin'])
+            }
+            
           }
         })
     }
-
-
-
   }
 
-  verCookie() {
-    var post = {
-      host: this.peticion.urlLocal,
-      path: "/clients/verCookie",
-      payload: {
-  
-      }
-    }
 
-  }
+
+
+
+  // verCookie() {
+  //   var post = {
+  //     host: this.peticion.urlLocal,
+  //     path: "/clients/verCookie",
+  //     payload: {
+
+  //     }
+  //   }
+
+  // }
 }

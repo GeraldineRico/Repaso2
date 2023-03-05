@@ -6,12 +6,12 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav ms-auto">
-          <div class="item nav-link" *ngFor="let item of datosMenuPrincipal">
+          <div class="item nav-link" *ngFor="let item of menu.datosMenuPrincipal">
             <div class="" routerLink={{item.destino}}>{{item.nombre}}</div>
         </div>
-          <a class="nav-link" aria-current="page" routerLink="/Home">HOME</a>
+          <!-- <a class="nav-link" aria-current="page" routerLink="/Home">HOME</a>
           <a class="nav-link" routerLink="/Productos">CATEGORIAS</a>
-          <a class="nav-link" routerLink="/Registro">REGISTRO</a>
+          <a class="nav-link" routerLink="/Registro">REGISTRO</a> -->
           <a class="nav-link" routerLink="/Login"><i class="bi bi-person-fill" (click)="cerrarSesion()"></i></a>
         </div>
       </div>

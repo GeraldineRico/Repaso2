@@ -6,6 +6,10 @@
       <div class="columna2 col-12">
         <h2 class="fw-bold text-center pt-3 mb-3">Bienvenido</h2>
         <div>
+          <select name="" id="" [(ngModel)]="rutas">
+            <option value="/admins/login">Administradores</option>
+            <option value="/clients/login">Clientes</option>
+          </select>
           <div class="mb-2">
             <label for="email" class="form-label">Correo electrónico</label>
             <input type="email" class="form-control" [(ngModel)]="Email">
@@ -20,10 +24,6 @@
           </div>
           <div class="d-grid">
             <button type="submit" class="btn btn-primary" (click)="iniciarSesion()">Iniciar sesión</button>
-          </div>
-
-          <div class="d-grid">
-            <button type="submit" class="btn btn-primary" (click)="verCookie()">Cookie</button>
           </div>
           <div class="mt-2 mb-2">
             <span>¿No tienes cuenta?<a routerLink="/Registro">Regístrate</a></span><br>
