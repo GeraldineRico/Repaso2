@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import { AlertasService } from 'src/app/Services/alertas.service';
+import { PeticionService } from 'src/app/Services/peticion.service';
+declare var $: any;
+declare var swal: any;
 
 @Component({
   selector: 'app-ventana-flotante',
@@ -7,4 +11,5 @@ import { Component } from '@angular/core';
 })
 export class VentanaFlotanteComponent {
 
+ 
 }

@@ -8,4 +8,5 @@
     left: 175px;
     width: calc(100% - 175px);
     height: calc(100vh - 50px);
+    display: block;
 }

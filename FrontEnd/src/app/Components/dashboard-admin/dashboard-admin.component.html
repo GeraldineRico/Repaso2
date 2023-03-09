@@ -1,36 +1,72 @@
+<app-menu-lateral></app-menu-lateral>
 <app-ventana-flotante></app-ventana-flotante>
 <div class="ventanaFlotante">
-    <div class="add">
-        <i class="bi bi-plus-square-fill" (click)="OpenModal()"></i>
+
+    <h2>Dashboard productos</h2>
+
+    <div class="add" (click)="OpenModal()">
+        <h4>Añadir producto</h4>
+        <i class="bi bi-plus-square-fill"></i>
     </div>
+
+    <table class="table table-striped table-dark table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Código</th>
+            <th scope="col">Nombre producto</th>
+            <th scope="col">Precio producto</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of listaProductos" (click)="cargarId(item._id)">
+            <td>{{item.code}}</td>
+            <td>{{item.nameProduct}}</td>
+            <td>{{item.price}}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      
+
+    
 </div>
 
-<div class="modal fade" id="modalProductos" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+<div class="modal fade" id="modalProductos" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Productos</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
             <div class="modal-body">
                 <div>
-                    <div class="mb-3">
-                        <label for="recipient-name" class="col-form-label">Código:</label>
-                        <input type="text" class="form-control" id="recipient-name">
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Código producto:</label>
+                        <input type="text" class="form-control" id="recipient-name" [(ngModel)]="code">
                     </div>
-                    <div class="mb-3">
+                    <div class="form-group">
                         <label for="recipient-name" class="col-form-label">Nombre producto:</label>
-                        <input type="text" class="form-control" id="recipient-name">
+                        <input type="text" class="form-control" id="recipient-name" [(ngModel)]="nameProduct">
                     </div>
-                    <div class="mb-3">
-                        <label for="message-text" class="col-form-label">Message:</label>
-                        <textarea class="form-control" id="message-text"></textarea>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Precio producto:</label>
+                        <input type="text" class="form-control" id="recipient-name" [(ngModel)]="price">
                     </div>
                 </div>
             </div>
+            <app-subir-archivos 
+            [urldestino]="destino"
+            [path]="path"
+            [inputName]="'userFile'"
+            ></app-subir-archivos>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary">Guardar producto</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button *ngIf="Id == ''" type="button" class="btn btn-primary" (click)="save()">Guardar producto</button>
+                <button *ngIf="Id != ''" type="button" class="btn btn-primary" (click)="update()">Actualizar producto</button>
+                <button *ngIf="Id != ''" type="button" class="btn btn-danger" (click)="delete()">Eliminar producto</button>
             </div>
         </div>
     </div>

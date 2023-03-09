@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertasService } from 'src/app/Services/alertas.service';
 import { PeticionService } from 'src/app/Services/peticion.service';
-
+declare var swal:any;
 // interface clientes{
 //   nombre:string,
 //   segundoNombre?:string, //el signo ? vuelve el campo opcional
@@ -44,104 +44,121 @@ export class RegistroComponent implements OnInit {
   //para validar desde el frontend los datos que llegan
   validacionRegistro(): boolean {
     if (this.Identificacion == 0 || this.Identificacion == null || this.Identificacion == undefined) {
-      this.alert.load("danger", "El campo cédula es obligatorio")
+      swal("Ops!", "El campo cédula es obligatorio", "error")
+      //this.alert.load("danger", "El campo cédula es obligatorio")
       return false
     }
 
     // para validar la cantidad de caracteres minimos que debe tener el campo
     if (this.Identificacion.toString().length < 8) {
-      this.alert.load("danger", "El campo cédula debe ser igual o mayor a 8 caracteres")
+      swal("Ops!", "El campo cédula debe ser igual o mayor a 8 caracteres", "error")
+      //this.alert.load("danger", "El campo cédula debe ser igual o mayor a 8 caracteres")
       return false
     }
 
     // para validar la cantidad de caracteres maximos que debe tener el campo   
     if (this.Identificacion.toString().length > 10) {
-      this.alert.load("danger", "El campo cédula no debe ser superior de 10 caracteres")
+      swal("Ops!", "El campo cédula no debe ser superior de 10 caracteres", "error")
+      //this.alert.load("danger", "El campo cédula no debe ser superior de 10 caracteres")
       return false
     }
 
     //para validar que el dato nombre no este vacio, nulo o indefinido
     if (this.Nombre == "" || this.Nombre == null || this.Nombre == undefined) {
-      this.alert.load("danger", "El campo nombre es obligatorio")
+      swal("Ops!", "El campo nombre es obligatorio", "error")
+      //this.alert.load("danger", "El campo nombre es obligatorio")
       return false
     }
 
     // para validar la cantidad de caracteres minimos que debe tener el campo
     if (this.Nombre.length < 3) {
-      this.alert.load("danger", "El campo nombre debe ser mayor de 3 caracteres")
+      swal("Ops!", "El campo nombre debe ser mayor de 3 caracteres", "error")
+      //this.alert.load("danger", "El campo nombre debe ser mayor de 3 caracteres")
       return false
     }
 
     // para validar la cantidad de caracteres maximos que debe tener el campo   
     if (this.Nombre.length > 20) {
-      this.alert.load("danger", "El campo nombre no debe ser superior de 20 caracteres")
+      swal("Ops!", "El campo nombre no debe ser superior de 20 caracteres", "error")
+      //this.alert.load("danger", "El campo nombre no debe ser superior de 20 caracteres")
       return false
     }
 
     //para validar que el dato apellido no este vacio, nulo o indefinido
     if (this.Apellidos == "" || this.Apellidos == null || this.Apellidos == undefined) {
-      this.alert.load("danger", "El campo apellido es obligatorio")
+      swal("Ops!", "El campo apellido es obligatorio", "error")
+      //this.alert.load("danger", "El campo apellido es obligatorio")
       return false
     }
 
     // para validar la cantidad de caracteres minimos que debe tener el campo
     if (this.Apellidos.length < 3) {
-      this.alert.load("danger", "El campo apellido debe ser mayor de 3 caracteres")
+      swal("Ops!", "El campo apellido debe ser mayor de 3 caracteres", "error")
+      //this.alert.load("danger", "El campo apellido debe ser mayor de 3 caracteres")
       return false
     }
 
     // para validar la cantidad de caracteres maximos que debe tener el campo   
     if (this.Apellidos.length > 20) {
-      this.alert.load("danger", "El campo apellido no debe ser superior de 20 caracteres")
+      swal("Ops!", "El campo apellido no debe ser superior de 20 caracteres", "error")
+      //this.alert.load("danger", "El campo apellido no debe ser superior de 20 caracteres")
       return false
     }
 
     //para validar que el dato direccion no este vacio, nulo o indefinido
     if (this.Direccion == "" || this.Direccion == null || this.Direccion == undefined) {
-      this.alert.load("danger", "El campo dirección es obligatorio")
+      swal("Ops!", "El campo dirección es obligatorio", "error")
+      //this.alert.load("danger", "El campo dirección es obligatorio")
       return false
     }
 
     //para validar que el dato telefono no este vacio, nulo o indefinido
     if (this.Telefono == 0 || this.Telefono == null || this.Telefono == undefined) {
-      this.alert.load("danger", "El campo teléfono es obligatorio")
+      swal("Ops!", "El campo teléfono es obligatorio", "error")
+      //this.alert.load("danger", "El campo teléfono es obligatorio")
       return false
     }
 
 
     //para validar que el dato edad no este vacio, nulo o indefinido
     if (this.Edad == 0 || this.Edad == null || this.Edad == undefined) {
-      this.alert.load("danger", "El campo edad es obligatorio")
+      swal("Ops!", "El campo edad es obligatorio", "error")
+      //this.alert.load("danger", "El campo edad es obligatorio")
       return false
     }
 
     // para validar la cantidad de caracteres minimos que debe tener el campo
     if (this.Edad < 18) {
-      this.alert.load("danger", "Para registrarse en nuestra página debe ser mayor de edad")
+      swal("Ops!", "Para registrarse en nuestra página debe ser mayor de edad", "error")
+      //this.alert.load("danger", "Para registrarse en nuestra página debe ser mayor de edad")
       return false
     }
 
     // para validar la cantidad de caracteres maximos que debe tener el campo   
     if (this.Edad > 100) {
-      this.alert.load("danger", "El campo edad no debe ser superior de 100")
+      swal("Ops!", "El campo edad no debe ser superior de 100", "error")
+      //this.alert.load("danger", "El campo edad no debe ser superior de 100")
       return false
     }
 
     //para validar que el dato estadoCivil no este vacio, nulo o indefinido
     if (this.EstadoC == "" || this.EstadoC == null || this.EstadoC == undefined) {
-      this.alert.load("danger", "El campo estado civil es obligatorio")
+      swal("Ops!", "El campo estado civil es obligatorio", "error")
+      //this.alert.load("danger", "El campo estado civil es obligatorio")
       return false
     }
 
     //para validar que el dato estadoCivil se llene de acuerdo a la lista especificada
     if (this.EstadoC != "Soltero" && this.EstadoC != "Casado" && this.EstadoC != "Union libre") {
-      this.alert.load("danger", "Debe seleccionar una opción")
+      swal("Ops!", "Debe seleccionar una opción", "error")
+      //this.alert.load("danger", "Debe seleccionar una opción")
       return false
     }
 
     //para validar que el dato email no este vacio, nulo o indefinido
     if (this.Email == "" || this.Email == null || this.Email == undefined) {
-      this.alert.load("danger", "El campo email es obligatorio")
+      swal("Ops!", "El campo email es obligatorio", "error")
+      //this.alert.load("danger", "El campo email es obligatorio")
       return false
     }
 
@@ -151,19 +168,22 @@ export class RegistroComponent implements OnInit {
     }
 
     if (!validarEmail(this.Email)) {
-      this.alert.load("danger", "El email debe contener @ . y dominio.")
+      swal("Ops!", "El email debe contener @ . y dominio.", "error")
+      //this.alert.load("danger", "El email debe contener @ . y dominio.")
       return false
     }
 
     //para validar que el dato password no este vacio, nulo o indefinido
     if (this.Password == "" || this.Password == null || this.Password == undefined) {
-      this.alert.load("danger", "El campo contraseña es obligatorio")
+      swal("Ops!", "El campo contraseña es obligatorio", "error")
+      //this.alert.load("danger", "El campo contraseña es obligatorio")
       return false
     }
 
     //para validar que el dato cPassword no este vacio, nulo o indefinido
     if (this.cPassword == "" || this.cPassword == null || this.cPassword == undefined) {
-      this.alert.load("danger", "El campo confirmación contraseña es obligatorio")
+      swal("Ops!", "El campo confirmación contraseña es obligatorio", "error")
+      //this.alert.load("danger", "El campo confirmación contraseña es obligatorio")
       return false
     }
 
@@ -173,7 +193,8 @@ export class RegistroComponent implements OnInit {
     }
 
     if (!validarContraseña(this.Password)) {
-      this.alert.load("danger", "La contraseña debe ser de mínimo 12 caracteres y debe contener mayúsculas, minúsculas, números y un carácter especial.")
+      swal("Ops!", "La contraseña debe ser de mínimo 12 caracteres y debe contener mayúsculas, minúsculas, números y un carácter especial.", "error")
+      //this.alert.load("danger", "La contraseña debe ser de mínimo 12 caracteres y debe contener mayúsculas, minúsculas, números y un carácter especial.")
       return false
     }
 
@@ -207,9 +228,11 @@ export class RegistroComponent implements OnInit {
       this.peticion.post(post.host + post.path, post.payload).then(
         (respuesta: any) => {
           if (respuesta.state == false) {
-            this.alert.load("danger", respuesta.mensaje)
+            swal("Ops!", respuesta.mensaje, "error")
+            //this.alert.load("danger", respuesta.mensaje)
           } else {
-            this.alert.load("success", respuesta.mensaje)
+            swal("Bienvenid@!", respuesta.mensaje, "success")
+            //this.alert.load("success", respuesta.mensaje)
             this.router.navigate(['/Login'])
           }
         })

@@ -18,9 +18,6 @@ export class MenuComponent implements OnInit{
   ngOnInit(): void {
     this.menu.cargarMenuPrincipal()
   }
-  
-  
-  
 
   cerrarSesion() {
     var post = {

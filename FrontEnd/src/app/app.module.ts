@@ -19,6 +19,7 @@ import { MenuLateralComponent } from './Components/menu-lateral/menu-lateral.com
 import { VentanaFlotanteComponent } from './Components/ventana-flotante/ventana-flotante.component';
 import { ClientesComponent } from './Components/clientes/clientes.component'
 import { InterceptorInterceptor } from './interceptors/interceptor.interceptor';
+import { SubirArchivosComponent } from './Components/global/subir-archivos/subir-archivos.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { InterceptorInterceptor } from './interceptors/interceptor.interceptor';
     DashboardAdminComponent,
     MenuLateralComponent,
     VentanaFlotanteComponent,
-    ClientesComponent
+    ClientesComponent,
+    SubirArchivosComponent
   ],
   imports: [
     BrowserModule,

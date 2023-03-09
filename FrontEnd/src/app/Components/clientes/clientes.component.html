@@ -1,6 +1,107 @@
 <app-menu-lateral></app-menu-lateral>
-
+<app-ventana-flotante></app-ventana-flotante>
 <div class="ventanaFlotante">
-    <p>clientes works!</p>
+    <h2>Dashboard clientes</h2>
+
+    <div class="add" (click)="OpenModal()">
+        <h4>Añadir cliente</h4>
+        <i class="bi bi-plus-square-fill"></i>
+    </div>
+
+    <table class="table table-striped table-dark table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Identificación</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Apellidos</th>
+            <th scope="col">Dirección</th>
+            <th scope="col">Telefono</th>
+            <th scope="col">Edad</th>
+            <th scope="col">Estado civil</th>
+            <th scope="col">Email</th>
+            <th scope="col">Contraseña</th>
+            <th scope="col">Confirmación</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of listaClientes" (click)="cargarId(item.identification)">
+            <td>{{item.identification}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.lastName}}</td>
+            <td>{{item.adress}}</td>
+            <td>{{item.phone}}</td>
+            <td>{{item.age}}</td>
+            <td>{{item.status}}</td>
+            <td>{{item.email}}</td>
+            <td>{{item.password}}</td>
+            <td>{{item.cPassword}}</td>
+          </tr>
+        </tbody>
+      </table>
+</div>
+
+<div class="modal fade" id="modalClientes" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Registro clientes</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Identificación:</label>
+                        <input type="text" class="form-control" id="recipient-name" [(ngModel)]="identification">
+                    </div>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Nombre:</label>
+                        <input type="text" class="form-control" id="recipient-name" [(ngModel)]="name">
+                    </div>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Apellido:</label>
+                        <input type="text" class="form-control" id="recipient-name" [(ngModel)]="lastName">
+                    </div>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Dirección:</label>
+                        <input type="text" class="form-control" id="recipient-name" [(ngModel)]="adress">
+                    </div>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Telefono:</label>
+                        <input type="text" class="form-control" id="recipient-name" [(ngModel)]="phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Edad:</label>
+                        <input type="text" class="form-control" id="recipient-name" [(ngModel)]="age">
+                    </div>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Estado civil:</label>
+                        <input type="text" class="form-control" id="recipient-name" [(ngModel)]="status">
+                    </div>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Email:</label>
+                        <input type="text" class="form-control" id="recipient-name" [(ngModel)]="email">
+                    </div>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Contraseña:</label>
+                        <input type="text" class="form-control" id="recipient-name" [(ngModel)]="password">
+                    </div>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Confirmación contraseña:</label>
+                        <input type="text" class="form-control" id="recipient-name" [(ngModel)]="cPassword">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button *ngIf="cedula == ''" type="button" class="btn btn-primary" (click)="save()">Guardar ciente</button>
+                <button *ngIf="cedula != ''" type="button" class="btn btn-primary">Actualizar cliente</button>
+                <button *ngIf="cedula != ''" type="button" class="btn btn-danger">Eliminar cliente</button>
+            </div>
+        </div>
+    </div>
 </div>
 

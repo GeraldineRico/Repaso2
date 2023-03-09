@@ -1,10 +1,10 @@
-<nav class="navbar navbar-expand-lg navbar-light navbar-fixed-top" id="myTab">
+<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-fixed-top" id="myTab">
     <div class="container-fluid">
         <a href="/Home"><img src="/../../assets/img/logoByG.jpg" alt="logoByG"></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
         <div class="navbar-nav ms-auto">
           <div class="item nav-link" *ngFor="let item of menu.datosMenuPrincipal">
             <div class="" routerLink={{item.destino}}>{{item.nombre}}</div>

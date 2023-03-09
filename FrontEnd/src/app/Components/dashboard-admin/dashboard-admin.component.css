@@ -1,0 +1,11 @@
+h2{
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+    margin-top: 15px;
+}
+
+table.table.table-striped.table-dark.table-hover {
+    margin: auto;
+    margin-top: 30px;
+    width: auto;
+}

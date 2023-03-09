@@ -4,7 +4,7 @@ import { forkJoin } from 'rxjs';
 import { AlertasService } from 'src/app/Services/alertas.service';
 import { MenuService } from 'src/app/Services/menu.service';
 import { PeticionService } from 'src/app/Services/peticion.service';
-
+declare var swal:any;
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -74,9 +74,11 @@ export class LoginComponent {
       this.peticion.post(post.host + post.path, post.payload).then(
         (respuesta: any) => {
           if (respuesta.state == false) {
-            this.alert.load("danger", respuesta.mensaje)
+            swal("Ops!", respuesta.mensaje, "error")
+            //this.alert.load("danger", respuesta.mensaje)
           } else {
-            this.alert.load("success", respuesta.mensaje)
+            swal("Bienvenid@!", respuesta.mensaje, "success")
+            //this.alert.load("success", respuesta.mensaje)
             this.menu.cargarMenuPrincipal()
 
             if(this.rutas === "/clients/login"){

@@ -24,7 +24,7 @@ clientsController.save = function (request, response) {
         age: request.body.age,
         status: request.body.status,
         email: request.body.email,
-        password: request.body.password.toString(),
+        password: request.body.password, //aqui habia un toString()
         cPassword: request.body.cPassword
     }
 

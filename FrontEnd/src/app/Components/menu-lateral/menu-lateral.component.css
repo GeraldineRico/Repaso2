@@ -1,52 +1,64 @@
 #menuLateral {
     width: 175px;
     display: block;
-    background-image: url("/../../assets/img/ciudadLogin.jpg");
+    background: black;
     background-size: cover;
     background-repeat: no-repeat;
     height: 100vh;
     position: absolute;
     top: 0px;
     color: black;
-    border-right: solid 1px black;
+    border-right: solid 1px rgba(0, 0, 0, 0.29);
 }
 
 .item {
+    margin-bottom: 20px;
+    color: gray;
+    font-size: 23px;
+    font-family: 'Sofia Sans Condensed', sans-serif;
     cursor: pointer;
     width: 100%;
     padding-left: 15px;
     height: 35px;
 }
 
+.item:hover{
+    color: white;
+}
+
 .datosInfor {
     position: absolute;
     right: 0px;
-    background-image: url("/../../assets/img/ciudadLogin.jpg");
+    background: white;
     background-size: cover;
     background-repeat: no-repeat;
-    border-bottom: solid 1px black;
-    box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.349);
+    border-bottom: solid 1px rgba(0, 0, 0, 0.781);
     height: 50px;
     width: calc(100% - 175px);
     top: 0px;
 }
 
 button.btn.btn-primary {
+    font-size: 12px;
     position: absolute;
-    right: 0px;
-    width: 150px;
+    right: 10px;
+    width: 100px;
     color: white;
     background: black;
-    height: 43px;
+    height: 30px;
     border-radius: 10px;
-    top: 3px;
+    top: 10px;
     border: none;
+}
+
+button.btn.btn-primary:hover {
+    box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.349);
 }
 
 .logo img{
     display: flex;
     margin: auto;
-    height: 50px;
+    height: 80px;
     margin-top: 10px;
     margin-bottom: 20px;
 }

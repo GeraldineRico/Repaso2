@@ -1,0 +1,27 @@
+<div class="contenedorUpload">
+
+    <div class="progress">
+        <div class="progress-bar progress-bar-info progress-bar-striped progress-bar-animated" role="progressbar"
+            attr.aria-valuenow="{{progress}}" aria-valuemin="0" aria-valuemax="100" style="width: 75%"
+            [ngStyle]="{width: progress + '%'}"></div>
+    </div>
+
+    <label for="subir">
+        <div class="btn btn-success" *ngIf="nombrearchivo == ''"><i class="bi bi-file-earmark-image"> Seleccionar
+                Archivo</i></div>
+        <div class="selectFile"> {{nombrearchivo}}</div>
+        <input type="file" id="subir" (change)="selectFile($event)" style="display: none;">
+    </label>
+
+    <button class="btn btn-success" (click)="upload()">
+        <i class="bi bi-cloud-upload-fill"> Subir imagen</i>
+    </button>
+
+    <div class="alert alert-success" role="alert" *ngIf="message != '' && estado == true">
+        {{message}}
+    </div>
+    <div class="alert alert-danger" role="alert" *ngIf="message != '' && estado == false">
+        {{message}}
+    </div>
+
+</div>
