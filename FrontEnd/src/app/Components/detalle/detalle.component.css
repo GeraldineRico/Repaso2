@@ -1,0 +1,31 @@
+.container{
+    margin-top: 95px;
+    background: red;
+    height: auto;
+    
+    margin-bottom: 50px;
+}
+
+
+
+#contenedorProductos{
+    display: block;
+    align-items: center;
+    margin-top: 30px;
+    display: flex;
+    text-align: center;
+    font-family: 'Sofia Sans Condensed', sans-serif;
+}
+
+#colProducto{
+    margin: auto;
+}
+
+img{
+    
+    width: 100%;
+}
+
+.jumbotron{
+    margin-top: 0px;
+}

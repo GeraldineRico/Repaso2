@@ -65,7 +65,7 @@ app.post("/clients/menuPrincipal", function (request, response) {
             { nombre: 'HOME', destino: '/Home' },
             { nombre: 'CATEGORIAS', destino: '/Productos' },
             { nombre: 'REGISTRO', destino: '/Registro' },
-            { nombre: 'ADMINS', destino: '/DashboardAdmin' }
+            { nombre: 'DASHBOARD', destino: '/DashboardAdmin' }
         ]
         //console.log(request.session)
         response.json({

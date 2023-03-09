@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ClientesComponent } from './Components/clientes/clientes.component';
 import { ContactenosComponent } from './Components/contactenos/contactenos.component';
 import { DashboardAdminComponent } from './Components/dashboard-admin/dashboard-admin.component';
+import { DetalleComponent } from './Components/detalle/detalle.component';
 import { HomeComponent } from './Components/home/home.component';
 import { LoginComponent } from './Components/login/login.component';
 import { MiPerfilComponent } from './Components/mi-perfil/mi-perfil.component';
@@ -15,6 +16,7 @@ const routes: Routes = [
   {path: 'Home', component: HomeComponent, pathMatch: 'full'},
   {path: 'Contactenos', component: ContactenosComponent, pathMatch: 'full'},
   {path: 'Productos', component: ProductosComponent, pathMatch: 'full'},
+  {path: 'Detalle/:identificador', component: DetalleComponent, pathMatch: 'full'},
   {path: 'MiPerfil', component: MiPerfilComponent, pathMatch: 'full'},
   {path: 'Registro', component: RegistroComponent, pathMatch: 'full'},
   {path: 'Login', component: LoginComponent, pathMatch: 'full'},

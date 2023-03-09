@@ -1,1 +1,31 @@
-<p>detalle works!</p>
+<app-menu></app-menu>
+
+<div class="container">
+
+    <div class="row" id="contenedorProductos">
+        <div class="col-sm-12 col-xs-12 col-md-12 col-lg-6 col-xl-6" id="colProducto">
+            <img src="http://localhost:3000/productos/{{Id}}.png" class="card-img-top" alt="...">
+        </div>
+        <div class="col-sm-12 col-xs-12 col-md-12 col-lg-6 col-xl-6" id="colProducto">
+            <div class="jumbotron">
+                <h1 class="display-4">{{nameProduct}}</h1>
+                <p class="lead">{{detail}}</p>
+                <hr class="my-4">
+                <p>Código del producto: {{code}}</p>
+                <p>Precio: {{price | currency}}</p>
+                <p class="lead">
+                  <a class="btn btn-primary btn-lg" href="#" role="button"><i class="bi bi-cart-plus"></i></a>
+                </p>
+              </div>
+        </div>
+    </div>
+    
+    
+    
+
+    
+    
+
+</div>
+
+<app-footer></app-footer>

@@ -26,6 +26,7 @@ export class DashboardAdminComponent implements OnInit {
   code: string = ""
   nameProduct: string = ""
   price: string = ""
+  detail: string = ""
 
   //loadAll
   listaProductos: any[] = []
@@ -43,6 +44,7 @@ export class DashboardAdminComponent implements OnInit {
     this.code = "",
     this.nameProduct = ""
     this.price = ""
+    this.detail = ""
     this.Id = ""
   }
 
@@ -55,7 +57,8 @@ export class DashboardAdminComponent implements OnInit {
       payload: {
         code: this.code,
         nameProduct: this.nameProduct,
-        price: this.price
+        price: this.price,
+        detail: this.detail
       }
 
     }
@@ -120,6 +123,7 @@ export class DashboardAdminComponent implements OnInit {
           this.code = respuesta.data.code
           this.nameProduct = respuesta.data.nameProduct
           this.price = respuesta.data.price
+          this.detail = respuesta.data.detail
           $('#modalProductos').modal('show')
         }
         else {
@@ -140,7 +144,8 @@ export class DashboardAdminComponent implements OnInit {
         id: this.Id,
         code: this.code,
         nameProduct: this.nameProduct,
-        price: this.price
+        price: this.price,
+        detail: this.detail
       }
 
     }

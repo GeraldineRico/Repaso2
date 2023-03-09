@@ -10,7 +10,8 @@ var productsSchema = new Schema({
     id: String,
     code: Number,
     nameProduct: String,
-    price: String
+    price: String,
+    detail: String
 
 })
 
@@ -26,6 +27,7 @@ productsModel.save = function (dataProduct, callback) {
     instancia.code = dataProduct.code
     instancia.nameProduct = dataProduct.nameProduct
     instancia.price = dataProduct.price
+    instancia.detail = dataProduct.detail
 
     //para guardar, si genera false muestra el mensaje false del controlador, si genera true muestra el mensaje true del controlador 
     instancia.save((error, created) => {
@@ -42,7 +44,7 @@ productsModel.save = function (dataProduct, callback) {
 // en este caso el modelo no recibe datos ya que solamente los debe cargar lo que se guardo, por eso queda Null y retorna un callback "respuesta" al controlador
 productsModel.loadAll = function (dataProduct, callback) {
 
-    pModel.find({}, { _id: 1, code: 1, nameProduct: 1, price: 1 }, (error, answerData) => {
+    pModel.find({}, { _id: 1, code: 1, nameProduct: 1, price: 1, detail: 1 }, (error, answerData) => {
         if (error) {
             return callback({ state: false, data: error })
         }
@@ -75,7 +77,8 @@ productsModel.updateIdentification = function (dataProduct, callback) {
     pModel.findByIdAndUpdate(dataProduct.id,{
         code: dataProduct.code,
         nameProduct: dataProduct.nameProduct,
-        price: dataProduct.price
+        price: dataProduct.price,
+        detail: dataProduct.detail
     }, (error,modificado) =>{
         if(error){
             return callback ({state: false, mensaje: error})

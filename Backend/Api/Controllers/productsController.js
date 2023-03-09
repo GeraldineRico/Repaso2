@@ -10,7 +10,8 @@ productsController.save = function (request, response) {
     var dataProduct = {
         code: request.body.code,
         nameProduct: request.body.nameProduct,
-        price: request.body.price
+        price: request.body.price,
+        detail: request.body.detail
     }
 
     //validaciones de los datos que esta recibiendo el controlador
@@ -53,6 +54,11 @@ productsController.save = function (request, response) {
 
     if (dataProduct.price == "" || dataProduct.price == null || dataProduct.price == undefined) {
         response.json({ state: false, mensaje: "El campo precio del producto es obligatorio" })
+        return false
+    }
+
+    if (dataProduct.detail == "" || dataProduct.detail == null || dataProduct.detail == undefined) {
+        response.json({ state: false, mensaje: "El campo detalle del producto es obligatorio" })
         return false
     }
 
@@ -107,7 +113,8 @@ productsController.updateIdentification = function (request, response) {
         id: request.body.id,
         code: request.body.code,
         nameProduct: request.body.nameProduct,
-        price: request.body.price
+        price: request.body.price,
+        detail: request.body.detail
     }
 
     //validaciones de los datos que esta recibiendo el controlador
@@ -155,6 +162,11 @@ productsController.updateIdentification = function (request, response) {
 
     if (dataProduct.price == "" || dataProduct.price == null || dataProduct.price == undefined) {
         response.json({ state: false, mensaje: "El campo precio del producto es obligatorio" })
+        return false
+    }
+
+    if (dataProduct.detail == "" || dataProduct.price == null || dataProduct.price == undefined) {
+        response.json({ state: false, mensaje: "El campo detalle del producto es obligatorio" })
         return false
     }
 
