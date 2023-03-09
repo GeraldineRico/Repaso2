@@ -14,6 +14,7 @@ export class MenuLateralComponent {
   }
 
   datosMenu = [
+    { nombre: 'Home', destino: '/Home' },
     { nombre: 'Productos', destino: '/DashboardAdmin' },
     { nombre: 'Clientes', destino: '/Clientes' },
     { nombre: 'Administradores', destino: '/VentanaFlotante' }

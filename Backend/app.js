@@ -56,6 +56,9 @@ require(__dirname + '/routes.js')
 // para cargar imagenes, static permite definir la carpeta donde se van a guardar las imagenes
 app.use('/archivos', express.static(__dirname + '/Files'))
 app.use('/fotoPerfil', express.static(__dirname + '/FotoPerfil'))
+app.use('/productos', express.static(__dirname + '/productos'))
+
+
 
 app.listen(config.puerto, function(){
     console.log ('servidor funcionando por el puerto ' + config.puerto )

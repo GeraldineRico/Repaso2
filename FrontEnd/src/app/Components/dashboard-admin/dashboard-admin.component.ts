@@ -16,7 +16,7 @@ export class DashboardAdminComponent implements OnInit {
   }
 
   destino:string = this.peticion.urlLocal
-  path:string = '/subirImagenes/nombreOpcional'
+  path:string = '/imagenProductos'
 
   ngOnInit(): void {
     this.loadAll()
@@ -100,6 +100,7 @@ export class DashboardAdminComponent implements OnInit {
   cargarId(id: string) {
     console.log(id)
     this.Id = id
+    this.path = this.path + '/' + this.Id
 
 
     var post = {

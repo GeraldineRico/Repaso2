@@ -21,6 +21,7 @@ import { ClientesComponent } from './Components/clientes/clientes.component'
 import { InterceptorInterceptor } from './interceptors/interceptor.interceptor';
 import { SubirArchivosComponent } from './Components/global/subir-archivos/subir-archivos.component';
 import { MiPerfilComponent } from './Components/mi-perfil/mi-perfil.component';
+import { DetalleComponent } from './Components/detalle/detalle.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { MiPerfilComponent } from './Components/mi-perfil/mi-perfil.component';
     VentanaFlotanteComponent,
     ClientesComponent,
     SubirArchivosComponent,
-    MiPerfilComponent
+    MiPerfilComponent,
+    DetalleComponent
   ],
   imports: [
     BrowserModule,

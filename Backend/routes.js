@@ -5,7 +5,7 @@ var clientsController = require(__dirname + '/Api/Controllers/clientsController.
 // para validar si la session está abierta
 var validarSession = function (request, response, next) {
     if (request.session.rol == undefined || request.session.rol == null || request.session.rol == "") {
-        response.json({ state: false, mensaje: "Su sesión expiró", redireccion:true})
+        response.json({ state: false, mensaje: "Su sesión expiró", redireccion: true })
         return false
     }
     else {
@@ -52,29 +52,42 @@ app.post("/clients/menuPrincipal", function (request, response) {
         { nombre: 'HOME', destino: '/Home' },
         { nombre: 'CATEGORIAS', destino: '/Productos' },
         { nombre: 'FAVORITOS', destino: '/Favoritos' },
-        { nombre: 'MI PERFIL', destino: '/MiPerfil'},
+        { nombre: 'MI PERFIL', destino: '/MiPerfil' },
     ]
     if (request.session.rol == 2) {
         response.json({
             state: true, menu: menu
         })
     }
-    else{
+    else if (request.session.rol == 1) {
+
         var menu = [
             { nombre: 'HOME', destino: '/Home' },
             { nombre: 'CATEGORIAS', destino: '/Productos' },
-            { nombre: 'REGISTRO', destino: '/Registro' }
+            { nombre: 'REGISTRO', destino: '/Registro' },
+            { nombre: 'ADMINS', destino: '/DashboardAdmin' }
         ]
         //console.log(request.session)
         response.json({
-            state: false, menu: menu 
+            state: true, menu: menu
+        })
+
+    } else {
+        var menu = [
+            { nombre: 'HOME', destino: '/Home' },
+            { nombre: 'CATEGORIAS', destino: '/Productos' },
+            { nombre: 'REGISTRO', destino: '/Registro' },
+        ]
+        //console.log(request.session)
+        response.json({
+            state: false, menu: menu
         })
     }
 })
 
 //se crea una peticion de tipo get para que reciba dos datos email y codigo y que el ciente se valide por medio de link
-app.get("/activar/:email/:codigo", function (request, response){
-    clientsController.Activar(request,response)
+app.get("/activar/:email/:codigo", function (request, response) {
+    clientsController.Activar(request, response)
 })
 
 
@@ -154,9 +167,9 @@ app.post("/admins/login", function (request, response) {
 
 
 
-app.post("/cerrarSesion", function(request,response){
+app.post("/cerrarSesion", function (request, response) {
     request.session.destroy()
-    response.json({state:true})
+    response.json({ state: true })
 })
 
 //para hacer uso de la librera multer
@@ -164,7 +177,7 @@ const multer = require("multer")
 const path = require("path")
 global.path = require("path")
 
-app.post("/subirImagenes/:name",function(req,res){
+app.post("/subirImagenes/:name", function (req, res) {
 
     console.log(req.params)
     var post = {
@@ -173,13 +186,13 @@ app.post("/subirImagenes/:name",function(req,res){
     }
 
     //configuración de multer
-    var upload = multer ({
+    var upload = multer({
         //procedimiento para almacenar la imagen
         storage: multer.diskStorage({
-            destination:function(req,file,callback){
-                callback(null,__dirname + post.ruta)
+            destination: function (req, file, callback) {
+                callback(null, __dirname + post.ruta)
             },
-            filename: function(req,file,callback){
+            filename: function (req, file, callback) {
                 console.log(file)
                 //originalname guarda el archivo con el nombre con el que se suba
                 var ext = path.extname(file.originalname)
@@ -187,32 +200,32 @@ app.post("/subirImagenes/:name",function(req,res){
             }
         }),
         //que tipos de imagenes se pueden cargar
-        fileFilter: function(req,file,callback){
+        fileFilter: function (req, file, callback) {
             //extraer la extensión del archivo
             var ext = path.extname(file.originalname)
             console.log(ext)
-            if(ext !== '.png' && ext !== '.jpg' && ext !== '.tif' && ext !== '.gif' ){
-                return callback ({state:false, mensaje: "Solo imagenes con extensión png, jpg, tif o gif"},null)
+            if (ext !== '.png' && ext !== '.jpg' && ext !== '.tif' && ext !== '.gif') {
+                return callback({ state: false, mensaje: "Solo imagenes con extensión png, jpg, tif o gif" }, null)
             }
             callback(null, true)
         }
 
-      //nombre llave para subir archivos es el nombre que se usa en la petición  
+        //nombre llave para subir archivos es el nombre que se usa en la petición  
     }).single('userFile')
 
-    upload(req,res,function(err){
-        if(err){
+    upload(req, res, function (err) {
+        if (err) {
             console.log(err)
             res.json(err)
         }
-        else{
+        else {
             console.log("Ok")
-            res.json({state:true,mensaje:"Archivo cargado"})
+            res.json({ state: true, mensaje: "Archivo cargado" })
         }
     })
 })
 
-app.post("/FotoPerfil/:name",function(req,res){
+app.post("/FotoPerfil/:name", function (req, res) {
 
     console.log(req.params)
     var post = {
@@ -221,13 +234,13 @@ app.post("/FotoPerfil/:name",function(req,res){
     }
 
     //configuración de multer
-    var upload = multer ({
+    var upload = multer({
         //procedimiento para almacenar la imagen
         storage: multer.diskStorage({
-            destination:function(req,file,callback){
-                callback(null,__dirname + post.ruta)
+            destination: function (req, file, callback) {
+                callback(null, __dirname + post.ruta)
             },
-            filename: function(req,file,callback){
+            filename: function (req, file, callback) {
                 console.log(file)
                 //originalname guarda el archivo con el nombre con el que se suba
                 var ext = path.extname(file.originalname)
@@ -235,27 +248,75 @@ app.post("/FotoPerfil/:name",function(req,res){
             }
         }),
         //que tipos de imagenes se pueden cargar
-        fileFilter: function(req,file,callback){
+        fileFilter: function (req, file, callback) {
             //extraer la extensión del archivo
             var ext = path.extname(file.originalname)
             console.log(ext)
-            if(ext !== '.png' && ext !== '.jpg' && ext !== '.tif' && ext !== '.gif' ){
-                return callback ({state:false, mensaje: "Solo imagenes con extensión png, jpg, tif o gif"},null)
+            if (ext !== '.png' && ext !== '.jpg' && ext !== '.tif' && ext !== '.gif') {
+                return callback({ state: false, mensaje: "Solo imagenes con extensión png, jpg, tif o gif" }, null)
             }
             callback(null, true)
         }
 
-      //nombre llave para subir archivos es el nombre que se usa en la petición  
+        //nombre llave para subir archivos es el nombre que se usa en la petición  
     }).single('userFile')
 
-    upload(req,res,function(err){
-        if(err){
+    upload(req, res, function (err) {
+        if (err) {
             console.log(err)
             res.json(err)
         }
-        else{
+        else {
             console.log("Ok")
-            res.json({state:true,mensaje:"Archivo cargado"})
+            res.json({ state: true, mensaje: "Archivo cargado" })
+        }
+    })
+})
+
+app.post("/imagenProductos/:name", function (req, res) {
+
+    console.log(req.params)
+    var post = {
+        //carpeta donde se almacenan las imagenes
+        ruta: '/productos'
+    }
+
+    //configuración de multer
+    var upload = multer({
+        //procedimiento para almacenar la imagen
+        storage: multer.diskStorage({
+            destination: function (req, file, callback) {
+                callback(null, __dirname + post.ruta)
+            },
+            filename: function (req, file, callback) {
+                console.log(file)
+                //originalname guarda el archivo con el nombre con el que se suba
+                var ext = path.extname(file.originalname)
+                callback(null, req.params.name + ext)
+            }
+        }),
+        //que tipos de imagenes se pueden cargar
+        fileFilter: function (req, file, callback) {
+            //extraer la extensión del archivo
+            var ext = path.extname(file.originalname)
+            console.log(ext)
+            if (ext !== '.png') {
+                return callback({ state: false, mensaje: "Solo imagenes con extensión png" }, null)
+            }
+            callback(null, true)
+        }
+
+        //nombre llave para subir archivos es el nombre que se usa en la petición  
+    }).single('userFile')
+
+    upload(req, res, function (err) {
+        if (err) {
+            console.log(err)
+            res.json(err)
+        }
+        else {
+            console.log("Ok")
+            res.json({ state: true, mensaje: "Archivo cargado" })
         }
     })
 })

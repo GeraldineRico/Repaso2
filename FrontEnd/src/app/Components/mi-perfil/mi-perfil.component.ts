@@ -16,7 +16,7 @@ export class MiPerfilComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.loadAll(this.Id)
+    this.loadAll()
   }
 
   destino:string = this.peticion.urlLocal
@@ -97,7 +97,7 @@ export class MiPerfilComponent implements OnInit{
 
   }*/
 
-  loadAll(id: string) {
+  loadAll() {
 
     var post = {
 
@@ -155,5 +155,42 @@ export class MiPerfilComponent implements OnInit{
         }
       }
     )
+  }
+
+  update() {
+
+    var post = {
+
+      host: this.peticion.urlLocal,
+      path: '/clients/updateIdentification',
+      payload: {
+        id: this.Id,
+        identification: this.identification,
+        name: this.name,
+        lastName: this.lastName,
+        adress: this.adress,
+        phone: this.phone,
+        age: this.age,
+        status: this.status,
+        email: this.email,
+        password: this.password,
+        cPassword: this.cPassword,
+      }
+
+    }
+
+    this.peticion.post(post.host + post.path, post.payload).then(
+      (respuesta: any) => {
+        if (respuesta.state == true) {
+          this.alert.load("success", respuesta.mensaje)
+          $('#modalClientes').modal('hide')
+          this.loadAll()
+        }
+        else {
+          this.alert.load("danger", respuesta.mensaje)
+        }
+      }
+    )
+
   }
 }

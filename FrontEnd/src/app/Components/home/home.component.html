@@ -39,7 +39,27 @@
     </div>
 </div>
 <div class="container">
+
     <div class="row" id="contenedorProductos">
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xl-3" *ngFor="let item of listaProductos">
+            <div class="card" style="width: 15rem;" id="cardProduct">
+                <img src="http://localhost:3000/productos/{{item._id}}.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{item.nameProduct}}</h5>
+                    <h6 class="card-title">{{item.price | currency}}</h6>
+                    <div class="row">
+                        <div class="col" id="colBoton">
+                            <a href="#" class="btn btn-primary">Ver más</a>
+                            <a href="#" class="btn btn-primary"><i class="bi bi-suit-heart"></i></a>
+                            <a href="#" class="btn btn-primary"><i class="bi bi-cart-plus"></i></a>
+                        </div>
+                    </div>                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <div class="row" id="contenedorProductos">
         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xl-3">
             <div class="card" style="width: 15rem;" id="cardProduct">
                 <img src="/../../assets/img/CropTop8.jpeg" class="card-img-top" alt="...">
@@ -224,7 +244,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 </div>
 
 <div id="cSecundario">

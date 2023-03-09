@@ -472,7 +472,7 @@ clientsController.Login = function (request, response) {
 
     clientsModel.validarEstadoCliente(dataClient, function (answerState) {
         if (answerState.mensaje[0].estado == 0) {
-            response.json({ state: false, mensaje: "Tiene pendiente activar su cuenta, por favor revise su email" })
+            response.json({ state: false, mensaje: "Tienes pendiente activar tu cuenta, por favor revisa tu correo electronico." })
         }
         else {
             clientsModel.Login(dataClient, function (answerLoadL) {

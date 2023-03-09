@@ -67,7 +67,7 @@ clientsModel.save = function (dataClient, callback) {
                     return callback({ state: false, mensaje: error })
                 }
                 else {
-                    return callback({ state: true, mensaje: "Cliente guardado correctamente" })
+                    return callback({ state: true, mensaje: "Por favor verifica tu correo electronico y valida tu cuenta" })
                 }
             })
 
