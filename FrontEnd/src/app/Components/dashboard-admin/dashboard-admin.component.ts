@@ -199,7 +199,7 @@ export class DashboardAdminComponent implements OnInit {
           swal("No se eliminó el producto!");
         }
       });
-    //   
+       
   }
 
 }

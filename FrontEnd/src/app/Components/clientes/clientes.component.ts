@@ -121,7 +121,7 @@ export class ClientesComponent implements OnInit {
   cargarId(id: string) {
     console.log(id)
     this.Id = id
-    
+
     var post = {
 
       host: this.peticion.urlLocal,
@@ -156,60 +156,83 @@ export class ClientesComponent implements OnInit {
     )
   }
 
-  // update() {
+  update() {
 
-  //   var post = {
+    var post = {
 
-  //     host: this.peticion.urlLocal,
-  //     path: '/products/updateIdentification',
-  //     payload: {
-  //       id: this.Id,
-  //       code: this.code,
-  //       nameProduct: this.nameProduct,
-  //       price: this.price
-  //     }
+      host: this.peticion.urlLocal,
+      path: '/clients/updateIdentification',
+      payload: {
+        id: this.Id,
+        identification: this.identification,
+        name: this.name,
+        lastName: this.lastName,
+        adress: this.adress,
+        phone: this.phone,
+        age: this.age,
+        status: this.status,
+        email: this.email,
+        password: this.password,
+        cPassword: this.cPassword,
+      }
 
-  //   }
+    }
 
-  //   this.peticion.post(post.host + post.path, post.payload).then(
-  //     (respuesta: any) => {
-  //       if (respuesta.state == true) {
-  //         this.alert.load("success", respuesta.mensaje)
-  //         $('#modalProductos').modal('hide')
-  //         this.loadAll()
-  //       }
-  //       else {
-  //         this.alert.load("danger", respuesta.mensaje)
-  //       }
-  //     }
-  //   )
+    this.peticion.post(post.host + post.path, post.payload).then(
+      (respuesta: any) => {
+        if (respuesta.state == true) {
+          this.alert.load("success", respuesta.mensaje)
+          $('#modalClientes').modal('hide')
+          this.loadAll()
+        }
+        else {
+          this.alert.load("danger", respuesta.mensaje)
+        }
+      }
+    )
 
-  // }
+  }
 
-  // delete() {
+  delete() {
 
-  //   var post = {
+    swal({
+      title: "¿Estas seguro?",
+      text: "Deseas eliminar este cliente",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+      .then((willDelete: any) => {
+        if (willDelete) {
+          var post = {
 
-  //     host: this.peticion.urlLocal,
-  //     path: '/products/delete',
-  //     payload: {
-  //       id: this.Id
-  //     }
+            host: this.peticion.urlLocal,
+            path: '/clients/delete',
+            payload: {
+              id: this.Id
+            }
 
-  //   }
+          }
 
-  //   this.peticion.post(post.host + post.path, post.payload).then(
-  //     (respuesta: any) => {
-  //       if (respuesta.state == true) {
-  //         this.alert.load("success", respuesta.mensaje)
-  //         $('#modalProductos').modal('hide')
-  //         this.loadAll()
-  //       }
-  //       else {
-  //         this.alert.load("danger", respuesta.mensaje)
-  //       }
-  //     }
-  //   )
-  // }
+          this.peticion.post(post.host + post.path, post.payload).then(
+            (respuesta: any) => {
+              if (respuesta.state == true) {
+                this.alert.load("success", respuesta.mensaje)
+                $('#modalClientes').modal('hide')
+                this.loadAll()
+              }
+              else {
+                this.alert.load("danger", respuesta.mensaje)
+              }
+            }
+          )
+          swal("Cliente eliminado correctamente!", {
+            icon: "success",
+          });
+        } else {
+          swal("No se eliminó el cliente!");
+        }
+      });
 
+  }
 }

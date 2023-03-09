@@ -19,6 +19,8 @@ export class MenuComponent implements OnInit{
     this.menu.cargarMenuPrincipal()
   }
 
+  
+
   cerrarSesion() {
     var post = {
       host: this.peticion.urlLocal,

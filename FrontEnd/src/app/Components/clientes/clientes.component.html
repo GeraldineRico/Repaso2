@@ -93,8 +93,8 @@
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                 <button *ngIf="Id == ''" type="button" class="btn btn-primary" (click)="save()">Guardar
                     ciente</button>
-                <button *ngIf="Id != ''" type="button" class="btn btn-primary">Actualizar cliente</button>
-                <button *ngIf="Id != ''" type="button" class="btn btn-danger">Eliminar cliente</button>
+                <button *ngIf="Id != ''" type="button" class="btn btn-primary" (click)="update()">Actualizar cliente</button>
+                <button *ngIf="Id != ''" type="button" class="btn btn-danger" (click)="delete()">Eliminar cliente</button>
             </div>
         </div>
     </div>
