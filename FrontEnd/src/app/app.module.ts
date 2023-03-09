@@ -22,6 +22,7 @@ import { InterceptorInterceptor } from './interceptors/interceptor.interceptor';
 import { SubirArchivosComponent } from './Components/global/subir-archivos/subir-archivos.component';
 import { MiPerfilComponent } from './Components/mi-perfil/mi-perfil.component';
 import { DetalleComponent } from './Components/detalle/detalle.component';
+import { CategoriasComponent } from './Components/categorias/categorias.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { DetalleComponent } from './Components/detalle/detalle.component';
     ClientesComponent,
     SubirArchivosComponent,
     MiPerfilComponent,
-    DetalleComponent
+    DetalleComponent,
+    CategoriasComponent
   ],
   imports: [
     BrowserModule,

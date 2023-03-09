@@ -166,6 +166,38 @@ app.post("/admins/login", function (request, response) {
 
 
 
+// rutas de categorias
+
+// vincular las rutas con el controlador
+var categoriesController = require(__dirname + '/Api/Controllers/categoriesController.js').controllerCategories
+
+//configuración de las rutas
+app.post("/categories/save", function (request, response) {
+    // se llama la función que esta dentro del controlador y se le entrega el request y response que entrega la ruta para que el controlador pueda respoder
+    categoriesController.save(request, response)
+})
+
+app.post("/categories/loadAll", function (request, response) {
+    // se llama la función que esta dentro del controlador y se le entrega el request y response que entrega la ruta para que el controlador pueda respoder
+    categoriesController.loadAll(request, response)
+})
+
+app.post("/categories/loadIdentification", function (request, response) {
+    // se llama la función que esta dentro del controlador y se le entrega el request y response que entrega la ruta para que el controlador pueda respoder
+    categoriesController.loadIdentification(request, response)
+})
+
+app.post("/categories/updateIdentification", function (request, response) {
+    // se llama la función que esta dentro del controlador y se le entrega el request y response que entrega la ruta para que el controlador pueda respoder
+    categoriesController.updateIdentification(request, response)
+})
+
+app.post("/categories/delete", function (request, response) {
+    // se llama la función que esta dentro del controlador y se le entrega el request y response que entrega la ruta para que el controlador pueda respoder
+    categoriesController.delete(request, response)
+})
+
+
 
 app.post("/cerrarSesion", function (request, response) {
     request.session.destroy()
@@ -320,3 +352,51 @@ app.post("/imagenProductos/:name", function (req, res) {
         }
     })
 })
+
+// app.post("/imagenCategorias/:name", function (req, res) {
+
+//     console.log(req.params)
+//     var post = {
+//         //carpeta donde se almacenan las imagenes
+//         ruta: '/categorias'
+//     }
+
+//     //configuración de multer
+//     var upload = multer({
+//         //procedimiento para almacenar la imagen
+//         storage: multer.diskStorage({
+//             destination: function (req, file, callback) {
+//                 callback(null, __dirname + post.ruta)
+//             },
+//             filename: function (req, file, callback) {
+//                 console.log(file)
+//                 //originalname guarda el archivo con el nombre con el que se suba
+//                 var ext = path.extname(file.originalname)
+//                 callback(null, req.params.name + ext)
+//             }
+//         }),
+//         //que tipos de imagenes se pueden cargar
+//         fileFilter: function (req, file, callback) {
+//             //extraer la extensión del archivo
+//             var ext = path.extname(file.originalname)
+//             console.log(ext)
+//             if (ext !== '.png') {
+//                 return callback({ state: false, mensaje: "Solo imagenes con extensión png" }, null)
+//             }
+//             callback(null, true)
+//         }
+
+//         //nombre llave para subir archivos es el nombre que se usa en la petición  
+//     }).single('userFile')
+
+//     upload(req, res, function (err) {
+//         if (err) {
+//             console.log(err)
+//             res.json(err)
+//         }
+//         else {
+//             console.log("Ok")
+//             res.json({ state: true, mensaje: "Archivo cargado" })
+//         }
+//     })
+// })

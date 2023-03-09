@@ -1,0 +1,80 @@
+<!-- <app-menu-lateral></app-menu-lateral>
+<app-ventana-flotante></app-ventana-flotante>
+<div class="ventanaFlotante">
+
+    <h2>Dashboard categorias</h2>
+
+    <div class="add" (click)="OpenModal()">
+        <h4>Añadir categorias</h4>
+        <i class="bi bi-plus-square-fill"></i>
+    </div>
+
+    <table class="table table-striped table-dark table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Imagen</th>
+                <th scope="col">Código</th>
+                <th scope="col">Nombre categoria</th>
+                <th scope="col">Detalle categoria</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of listaCategories" (click)="cargarId(item._id)">
+                <td><img src="http://localhost:3000/categorias/{{item._id}}.png"  class="imgProducto" alt=""></td>
+                <td>{{item.code}}</td>
+                <td>{{item.nameCategories}}</td>
+                <td>{{item.detail}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+
+
+
+</div>
+
+<div class="modal fade" id="modalCategories" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Categorias</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <div class="form-group" *ngIf="Id != ''">
+                        <label for="recipient-name" class="col-form-label">Imagen:</label>
+                        <img src="http://localhost:3000/categorias/{{Id}}.png"  class="imgModalProducto" alt="">
+                    </div>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Código categoria:</label>
+                        <input type="text" class="form-control" id="recipient-name" [(ngModel)]="code">
+                    </div>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Nombre categoria:</label>
+                        <input type="text" class="form-control" id="recipient-name" [(ngModel)]="nameCategories">
+                    </div>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Detalle categoria:</label>
+                        <input type="text-area" class="form-control" id="recipient-name" [(ngModel)]="detail">
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="Id != ''">
+                <app-subir-archivos [urldestino]="destino" [path]="path" [inputName]="'userFile'"></app-subir-archivos>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button *ngIf="Id == ''" type="button" class="btn btn-primary" (click)="save()">Guardar
+                    categoria</button>
+                <button *ngIf="Id != ''" type="button" class="btn btn-primary" (click)="update()">Actualizar
+                    categoria</button>
+                <button *ngIf="Id != ''" type="button" class="btn btn-danger" (click)="delete()">Eliminar
+                    categoria</button>
+            </div>
+        </div>
+    </div>
+</div> -->
