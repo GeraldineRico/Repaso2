@@ -41,7 +41,7 @@ export class DashboardAdminComponent implements OnInit {
 
   limpiar() {
     this.code = "",
-      this.nameProduct = ""
+    this.nameProduct = ""
     this.price = ""
     this.Id = ""
   }

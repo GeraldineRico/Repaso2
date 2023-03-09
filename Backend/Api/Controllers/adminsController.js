@@ -184,26 +184,14 @@ adminsController.loadIdentification = function (request, response) {
 
     //aquí se establecen los datos que recibe el modelo 
     var dataAdmin = {
-        identification: request.body.identification,
+        id: request.body.id,
     }
 
     //validaciones de los datos que esta recibiendo el controlador
 
     //para validar que el dato cedula no este vacio, nulo o indefinido
-    if (dataAdmin.identification == "" || dataAdmin.identification == null || dataAdmin.identification == undefined) {
-        response.json({ state: false, mensaje: "El campo cédula es obligatorio" })
-        return false
-    }
-
-    // para validar la cantidad de caracteres minimos que debe tener el campo
-    if (dataAdmin.identification.length < 8) {
-        response.json({ state: false, mensaje: "El campo cédula debe ser igual o mayor a 8 caracteres" })
-        return false
-    }
-
-    // para validar la cantidad de caracteres maximos que debe tener el campo   
-    if (dataAdmin.identification.length > 10) {
-        response.json({ state: false, mensaje: "El campo cédula no debe ser superior de 10 caracteres" })
+    if (dataAdmin.id == "" || dataAdmin.id == null || dataAdmin.id == undefined) {
+        response.json({ state: false, mensaje: "El campo id del admin es obligatorio" })
         return false
     }
 
@@ -218,6 +206,7 @@ adminsController.updateIdentification = function (request, response) {
 
     //aquí se establecen los datos que recibe el modelo 
     var dataAdmin = {
+        id: request.body.id,
         identification: request.body.identification,
         name: request.body.name,
         lastName: request.body.lastName,
@@ -231,6 +220,11 @@ adminsController.updateIdentification = function (request, response) {
     }
 
     //validaciones de los datos que esta recibiendo el controlador
+
+    if (dataAdmin.id == "" || dataAdmin.id == null || dataAdmin.id == undefined) {
+        response.json({ state: false, mensaje: "El campo id del admin es obligatorio" })
+        return false
+    }
 
     //para validar que el dato cedula no este vacio, nulo o indefinido
     if (dataAdmin.identification == "" || dataAdmin.identification == null || dataAdmin.identification == undefined) {
@@ -380,26 +374,14 @@ adminsController.delete = function (request, response) {
 
     //aquí se establecen los datos que recibe el modelo 
     var dataAdmin = {
-        identification: request.body.identification,
+        id: request.body.id,
     }
 
     //validaciones de los datos que esta recibiendo el controlador
 
     //para validar que el dato cedula no este vacio, nulo o indefinido
-    if (dataAdmin.identification == "" || dataAdmin.identification == null || dataAdmin.identification == undefined) {
-        response.json({ state: false, mensaje: "El campo cédula es obligatorio" })
-        return false
-    }
-
-    // para validar la cantidad de caracteres minimos que debe tener el campo
-    if (dataAdmin.identification.length < 8) {
-        response.json({ state: false, mensaje: "El campo cédula debe ser igual o mayor a 8 caracteres" })
-        return false
-    }
-
-    // para validar la cantidad de caracteres maximos que debe tener el campo   
-    if (dataAdmin.identification.length > 10) {
-        response.json({ state: false, mensaje: "El campo cédula no debe ser superior de 10 caracteres" })
+    if (dataAdmin.id == "" || dataAdmin.id == null || dataAdmin.id == undefined) {
+        response.json({ state: false, mensaje: "El campo id del admin es obligatorio" })
         return false
     }
 
@@ -451,6 +433,7 @@ adminsController.Login = function (request, response) {
 
 }
 
+//AQUI VA ACTIVAR CUENTA DE ADMINS
 
 
 module.exports.controllerAdmins = adminsController // para exportar los controladores y que se puedan usar en las rutas

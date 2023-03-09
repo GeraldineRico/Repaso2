@@ -7,6 +7,7 @@ const Schema = mongoose.Schema;
 //se definen los tipos que tiene el esquema
 var clientsSchema = new Schema({
 
+    id: String,
     identification: {
         type: Number,
         unique: true, //Para que el campo no se pueda repetir
@@ -21,12 +22,12 @@ var clientsSchema = new Schema({
         type: String,
         enum: ["Soltero", "Casado", "Unión libre"] //lista de opciones que debe recibir el campo
     },
-    email:String,
-    password:String,
-    cPassword:String,
-    rol:Number,
-    estado:Number,
-    codigo:String
+    email: String,
+    password: String,
+    cPassword: String,
+    rol: Number,
+    estado: Number,
+    codigo: String
 })
 
 //se crea la coleccion en la base de datos y se le asigna el esquema 
@@ -78,7 +79,7 @@ clientsModel.save = function (dataClient, callback) {
 // en este caso el modelo no recibe datos ya que solamente los debe cargar lo que se guardo, por eso queda Null y retorna un callback "respuesta" al controlador
 clientsModel.loadAll = function (dataClient, callback) {
 
-    cModel.find({}, { _id: 0, identification: 1, name: 1, lastName: 1, phone: 1 }, (error, answerLoadA) => {
+    cModel.find({}, { _id: 1, identification: 1, name: 1, lastName: 1, phone: 1, age:1, email:1, adress:1 }, (error, answerLoadA) => {
         if (error) {
             return callback({ state: false, data: error })
         }
@@ -92,8 +93,8 @@ clientsModel.loadAll = function (dataClient, callback) {
 // el modelo recibe los datos del controlador por medio del post, el modelo los procesa y retorna un callback "respuesta" al controlador
 clientsModel.loadIdentification = function (dataClient, callback) {
 
-    //buscar la cédula
-    cModel.find({ identification: dataClient.identification }, {}, (error, answerLoadI) => {
+    //buscar la id
+    cModel.findById(dataClient.id, {}, (error, answerLoadI) => {
         if (error) {
             return callback({ state: false, mensaje: error })
         }
@@ -108,7 +109,26 @@ clientsModel.loadIdentification = function (dataClient, callback) {
 // el modelo recibe los datos del controlador por medio del post, el modelo los procesa y retorna un callback "respuesta" al controlador
 clientsModel.updateIdentification = function (dataClient, callback) {
 
-    cModel.find({ identification: dataClient.identification }, {}, (error, answerUpdate) => {
+    cModel.findByIdAndUpdate(dataClient.id, {
+        name: dataClient.name,
+        lastName: dataClient.lastName,
+        adress: dataClient.adress,
+        phone: dataClient.phone,
+        age: dataClient.age,
+        status: dataClient.status,
+        email: dataClient.email,
+        password: dataClient.password,
+        cPassword: dataClient.cPassword
+    }, (error,modified) =>{
+        if(error){
+            return callback ({state: false, mensaje:error})
+        }
+        else{
+            return callback ({state: true, mensaje: "Datos actualizados correctamente"})
+        }
+    })
+
+    /* cModel.find({ identification: dataClient.identification }, {}, (error, answerUpdate) => {
         if (error) {
             return callback({ state: false, mensaje: error })
         }
@@ -138,13 +158,22 @@ clientsModel.updateIdentification = function (dataClient, callback) {
                 return callback({ state: false, mensaje:"No se encontró la cédula"})
             }
         }
-    })
+    }) */
 }
 
 // el modelo recibe los datos del controlador por medio del post, el modelo los procesa y retorna un callback "respuesta" al controlador
 clientsModel.delete = function (dataClient, callback) {
 
-    cModel.find({ identification: dataClient.identification }, {}, (error, answerDelete) => {
+    cModel.findByIdAndDelete(dataClient.id,(error,answerDelete) =>{
+        if(error){
+            return callback({state: false, mensaje:error})
+        }
+        else{
+            return callback({state: true, mensaje: "Datos del cliente borrados"})
+        }
+    })
+
+    /* cModel.find({ identification: dataClient.identification }, {}, (error, answerDelete) => {
         if (error) {
             return callback({ state: false, mensaje: error })
         }
@@ -155,30 +184,30 @@ clientsModel.delete = function (dataClient, callback) {
                         return callback({ state: false, mensaje: error })
                     }
                     else {
-                        return callback({ state: true, mensaje:"Cliente borrado"})
+                        return callback({ state: true, mensaje: "Cliente borrado" })
                     }
                 })
             } else {
-                return callback({ state: false, mensaje:"No se encontró la cédula" })
+                return callback({ state: false, mensaje: "No se encontró la cédula" })
             }
         }
-    })
+    }) */
 }
 
 clientsModel.Login = function (dataClient, callback) {
-    
+
     //buscar email y password
-    cModel.find({ email: dataClient.email, password: dataClient.password}, {name:1,rol:2}, (error, answerLoadL) => {
+    cModel.find({ email: dataClient.email, password: dataClient.password }, { name: 1, rol: 2 }, (error, answerLoadL) => {
         if (error) {
             return callback({ state: false, mensaje: error })
         }
         else {
-            if(answerLoadL.length == 0){
-                return callback({state:false, mensaje: "Datos invalidos"})
-            }else{
+            if (answerLoadL.length == 0) {
+                return callback({ state: false, mensaje: "Datos invalidos" })
+            } else {
                 return callback({ state: true, mensaje: answerLoadL })
             }
-            
+
         }
     })
 
@@ -189,7 +218,7 @@ clientsModel.Login = function (dataClient, callback) {
 clientsModel.validarEstadoCliente = function (dataClient, callback) {
 
     //buscar el email y muestra el estado 0 o 1 para indicar al usuario si debe validar la cuenta o no
-    cModel.find({email: dataClient.email}, {estado:1}, (error, answerState) => {
+    cModel.find({ email: dataClient.email }, { estado: 1 }, (error, answerState) => {
         if (error) {
             return callback({ state: false, mensaje: error })
         }
@@ -204,7 +233,7 @@ clientsModel.validarEstadoCliente = function (dataClient, callback) {
 clientsModel.Activar = function (dataClient, callback) {
 
     //buscar el email y codigo
-    cModel.find({email: dataClient.email, codigo: dataClient.codigo}, {estado:1}, (error, answerState) => {
+    cModel.find({ email: dataClient.email, codigo: dataClient.codigo }, { estado: 1 }, (error, answerState) => {
         if (error) {
             return callback({ state: false, mensaje: error })
         }
@@ -216,16 +245,16 @@ clientsModel.Activar = function (dataClient, callback) {
 
 }
 
-clientsModel.actualizarEstado = function (dataClient, callback){
+clientsModel.actualizarEstado = function (dataClient, callback) {
 
-    cModel.findByIdAndUpdate(dataClient.id,{
-        estado:1,
-    },(error,modificado) =>{
-        if(error){
-            return callback({state:false, mensaje: error})
+    cModel.findByIdAndUpdate(dataClient.id, {
+        estado: 1,
+    }, (error, modificado) => {
+        if (error) {
+            return callback({ state: false, mensaje: error })
         }
-        else{
-            return callback({state:true})
+        else {
+            return callback({ state: true })
         }
     })
 }

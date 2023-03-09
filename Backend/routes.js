@@ -52,7 +52,7 @@ app.post("/clients/menuPrincipal", function (request, response) {
         { nombre: 'HOME', destino: '/Home' },
         { nombre: 'CATEGORIAS', destino: '/Productos' },
         { nombre: 'FAVORITOS', destino: '/Favoritos' },
-        { nombre: 'PERFIL', destino: '/Miperfil' },
+        { nombre: 'MI PERFIL', destino: '/MiPerfil'},
         { nombre: 'SALIR', destino: '/Home'}
     ]
     if (request.session.rol == 2) {
@@ -66,7 +66,7 @@ app.post("/clients/menuPrincipal", function (request, response) {
             { nombre: 'CATEGORIAS', destino: '/Productos' },
             { nombre: 'REGISTRO', destino: '/Registro' }
         ]
-        console.log(request.session)
+        //console.log(request.session)
         response.json({
             state: false, menu: menu 
         })

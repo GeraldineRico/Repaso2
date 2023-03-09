@@ -7,6 +7,7 @@ const Schema = mongoose.Schema;
 //se definen los tipos que tiene el esquema
 var adminsSchema = new Schema({
 
+    id: String,
     identification: {
         type: Number,
         unique: true, //Para que el campo no se pueda repetir
@@ -21,10 +22,10 @@ var adminsSchema = new Schema({
         type: String,
         enum: ["Soltero", "Casado", "Unión libre"] //lista de opciones que debe recibir el campo
     },
-    email:String,
-    password:String,
-    cPassword:String,
-    rol:Number
+    email: String,
+    password: String,
+    cPassword: String,
+    rol: Number
 
 })
 
@@ -74,7 +75,7 @@ adminsModel.save = function (dataAdmin, callback) {
 // en este caso el modelo no recibe datos ya que solamente los debe cargar lo que se guardo, por eso queda Null y retorna un callback "respuesta" al controlador
 adminsModel.loadAll = function (dataAdmin, callback) {
 
-    aModel.find({}, { _id: 0, identification: 1, name: 1, lastName: 1, phone: 1 }, (error, answerLoadA) => {
+    aModel.find({}, { _id: 1, identification: 1, name: 1, lastName: 1, phone: 1, age: 1, email: 1, rol: 1 }, (error, answerLoadA) => {
         if (error) {
             return callback({ state: false, data: error })
         }
@@ -89,14 +90,23 @@ adminsModel.loadAll = function (dataAdmin, callback) {
 adminsModel.loadIdentification = function (dataAdmin, callback) {
 
     //buscar la cédula
-    aModel.find({ identification: dataAdmin.identification }, {}, (error, answerLoadI) => {
+    aModel.findById(dataAdmin.id, {}, (error, answerLoadI) => {
         if (error) {
             return callback({ state: false, mensaje: error })
-        }
-        else {
+        } else {
             return callback({ state: true, mensaje: answerLoadI })
         }
     })
+
+
+    // aModel.find({ identification: dataAdmin.identification }, {}, (error, answerLoadI) => {
+    //     if (error) {
+    //         return callback({ state: false, mensaje: error })
+    //     }
+    //     else {
+    //         return callback({ state: true, mensaje: answerLoadI })
+    //     }
+    // })
 
 
 }
@@ -104,7 +114,26 @@ adminsModel.loadIdentification = function (dataAdmin, callback) {
 // el modelo recibe los datos del controlador por medio del post, el modelo los procesa y retorna un callback "respuesta" al controlador
 adminsModel.updateIdentification = function (dataAdmin, callback) {
 
-    aModel.find({ identification: dataAdmin.identification }, {}, (error, answerUpdate) => {
+    aModel.findByIdAndUpdate(dataAdmin.id, {
+        name: dataAdmin.name,
+        lastName: dataAdmin.lastName,
+        adress: dataAdmin.adress,
+        phone: dataAdmin.phone,
+        age: dataAdmin.age,
+        status: dataAdmin.status,
+        email: dataAdmin.email,
+        password: dataAdmin.password,
+        cPassword: dataAdmin.cPassword
+    }, (error,modified) =>{
+        if(error){
+            return callback ({state: false, mensaje:error})
+        }
+        else{
+            return callback({ state: true, mensaje: "Datos actualizados correctamente" })
+        }
+    } )
+
+    /* aModel.find({ identification: dataAdmin.identification }, {}, (error, answerUpdate) => {
         if (error) {
             return callback({ state: false, mensaje: error })
         }
@@ -124,23 +153,32 @@ adminsModel.updateIdentification = function (dataAdmin, callback) {
 
                     }, (error, modified) => {
                         if (error) {
-                            return callback({ state: false, mensaje:error })
+                            return callback({ state: false, mensaje: error })
                         }
                         else {
-                            return callback({ state: true, mensaje:"Administrador actualizado correctamente"})
+                            return callback({ state: true, mensaje: "Administrador actualizado correctamente" })
                         }
                     })
             } else {
-                return callback({ state: false, mensaje:"No se encontró la cédula"})
+                return callback({ state: false, mensaje: "No se encontró la cédula" })
             }
         }
-    })
+    }) */
 }
 
 // el modelo recibe los datos del controlador por medio del post, el modelo los procesa y retorna un callback "respuesta" al controlador
 adminsModel.delete = function (dataAdmin, callback) {
 
-    aModel.find({ identification: dataAdmin.identification }, {}, (error, answerDelete) => {
+    aModel.findByIdAndDelete(dataAdmin.id,(error,answerDelete) =>{
+        if(error){
+            return callback({state:false, mensaje:error})
+        }
+        else{
+            return callback({state:true, mensaje:"Datos del admin borrados"})
+        }
+    })
+
+   /*  aModel.find({ identification: dataAdmin.identification }, {}, (error, answerDelete) => {
         if (error) {
             return callback({ state: false, mensaje: error })
         }
@@ -151,30 +189,30 @@ adminsModel.delete = function (dataAdmin, callback) {
                         return callback({ state: false, mensaje: error })
                     }
                     else {
-                        return callback({ state: true, mensaje:"Administrador borrado"})
+                        return callback({ state: true, mensaje: "Administrador borrado" })
                     }
                 })
             } else {
-                return callback({ state: false, mensaje:"No se encontró la cédula" })
+                return callback({ state: false, mensaje: "No se encontró la cédula" })
             }
         }
-    })
+    }) */
 }
 
 adminsModel.Login = function (dataAdmin, callback) {
-    
+
     //buscar email y password
-    aModel.find({ email: dataAdmin.email, password: dataAdmin.password}, {name:1,rol:1}, (error, answerLoadL) => {
+    aModel.find({ email: dataAdmin.email, password: dataAdmin.password }, { name: 1, rol: 1 }, (error, answerLoadL) => {
         if (error) {
             return callback({ state: false, mensaje: error })
         }
         else {
-            if(answerLoadL.length == 0){
-                return callback({state:false, mensaje: "Datos invalidos"})
-            }else{
+            if (answerLoadL.length == 0) {
+                return callback({ state: false, mensaje: "Datos invalidos" })
+            } else {
                 return callback({ state: true, mensaje: answerLoadL })
             }
-            
+
         }
     })
 

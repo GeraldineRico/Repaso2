@@ -236,26 +236,14 @@ clientsController.loadIdentification = function (request, response) {
 
     //aquí se establecen los datos que recibe el modelo 
     var dataClient = {
-        identification: request.body.identification,
+        id: request.body.id,
     }
 
     //validaciones de los datos que esta recibiendo el controlador
 
     //para validar que el dato cedula no este vacio, nulo o indefinido
-    if (dataClient.identification == "" || dataClient.identification == null || dataClient.identification == undefined) {
-        response.json({ state: false, mensaje: "El campo cédula es obligatorio" })
-        return false
-    }
-
-    // para validar la cantidad de caracteres minimos que debe tener el campo
-    if (dataClient.identification.length < 8) {
-        response.json({ state: false, mensaje: "El campo cédula debe ser igual o mayor a 8 caracteres" })
-        return false
-    }
-
-    // para validar la cantidad de caracteres maximos que debe tener el campo   
-    if (dataClient.identification.length > 10) {
-        response.json({ state: false, mensaje: "El campo cédula no debe ser superior de 10 caracteres" })
+    if (dataClient.id == "" || dataClient.id == null || dataClient.id == undefined) {
+        response.json({ state: false, mensaje: "El campo id es obligatorio" })
         return false
     }
 
@@ -270,6 +258,7 @@ clientsController.updateIdentification = function (request, response) {
 
     //aquí se establecen los datos que recibe el modelo 
     var dataClient = {
+        id: request.body.id,
         identification: request.body.identification,
         name: request.body.name,
         lastName: request.body.lastName,
@@ -283,6 +272,11 @@ clientsController.updateIdentification = function (request, response) {
     }
 
     //validaciones de los datos que esta recibiendo el controlador
+
+    if (dataClient.id == "" || dataClient.id == null || dataClient.id == undefined) {
+        response.json({ state: false, mensaje: "El campo id es obligatorio" })
+        return false
+    }
 
     //para validar que el dato cedula no este vacio, nulo o indefinido
     if (dataClient.identification == "" || dataClient.identification == null || dataClient.identification == undefined) {
@@ -432,26 +426,14 @@ clientsController.delete = function (request, response) {
 
     //aquí se establecen los datos que recibe el modelo 
     var dataClient = {
-        identification: request.body.identification,
+        id: request.body.id,
     }
 
     //validaciones de los datos que esta recibiendo el controlador
 
     //para validar que el dato cedula no este vacio, nulo o indefinido
-    if (dataClient.identification == "" || dataClient.identification == null || dataClient.identification == undefined) {
-        response.json({ state: false, mensaje: "El campo cédula es obligatorio" })
-        return false
-    }
-
-    // para validar la cantidad de caracteres minimos que debe tener el campo
-    if (dataClient.identification.length < 8) {
-        response.json({ state: false, mensaje: "El campo cédula debe ser igual o mayor a 8 caracteres" })
-        return false
-    }
-
-    // para validar la cantidad de caracteres maximos que debe tener el campo   
-    if (dataClient.identification.length > 10) {
-        response.json({ state: false, mensaje: "El campo cédula no debe ser superior de 10 caracteres" })
+    if (dataClient.id == "" || dataClient.id == null || dataClient.id == undefined) {
+        response.json({ state: false, mensaje: "El campo id del cliente obligatorio" })
         return false
     }
 
@@ -502,7 +484,7 @@ clientsController.Login = function (request, response) {
                     request.session.rol = answerLoadL.mensaje[0].rol
                     request.session._id = answerLoadL.mensaje[0]._id
 
-                    response.json({ state: true, mensaje: "Bienvenido Cliente" })
+                    response.json({ state: true, mensaje: "" + request.session.nombre })
                 }
                 else {
                     response.json({ state: false, mensaje: "Usuario o contraseña invalido cliente" })

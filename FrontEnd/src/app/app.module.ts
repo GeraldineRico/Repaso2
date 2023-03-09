@@ -20,6 +20,7 @@ import { VentanaFlotanteComponent } from './Components/ventana-flotante/ventana-
 import { ClientesComponent } from './Components/clientes/clientes.component'
 import { InterceptorInterceptor } from './interceptors/interceptor.interceptor';
 import { SubirArchivosComponent } from './Components/global/subir-archivos/subir-archivos.component';
+import { MiPerfilComponent } from './Components/mi-perfil/mi-perfil.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { SubirArchivosComponent } from './Components/global/subir-archivos/subir
     MenuLateralComponent,
     VentanaFlotanteComponent,
     ClientesComponent,
-    SubirArchivosComponent
+    SubirArchivosComponent,
+    MiPerfilComponent
   ],
   imports: [
     BrowserModule,

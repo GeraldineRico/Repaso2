@@ -10,35 +10,29 @@
 
     <table class="table table-striped table-dark table-hover">
         <thead>
-          <tr>
-            <th scope="col">Identificación</th>
-            <th scope="col">Nombre</th>
-            <th scope="col">Apellidos</th>
-            <th scope="col">Dirección</th>
-            <th scope="col">Telefono</th>
-            <th scope="col">Edad</th>
-            <th scope="col">Estado civil</th>
-            <th scope="col">Email</th>
-            <th scope="col">Contraseña</th>
-            <th scope="col">Confirmación</th>
-
-          </tr>
+            <tr>
+                <th scope="col">Identificación</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellidos</th>
+                <th scope="col">Dirección</th>
+                <th scope="col">Telefono</th>
+                <th scope="col">Edad</th>
+                <th scope="col">Email</th>
+            </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let item of listaClientes" (click)="cargarId(item.identification)">
-            <td>{{item.identification}}</td>
-            <td>{{item.name}}</td>
-            <td>{{item.lastName}}</td>
-            <td>{{item.adress}}</td>
-            <td>{{item.phone}}</td>
-            <td>{{item.age}}</td>
-            <td>{{item.status}}</td>
-            <td>{{item.email}}</td>
-            <td>{{item.password}}</td>
-            <td>{{item.cPassword}}</td>
-          </tr>
+            <tr *ngFor="let item of listaClientes" (click)="cargarId(item._id)">
+                <td>{{item.identification}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.lastName}}</td>
+                <td>{{item.adress}}</td>
+                <td>{{item.phone}}</td>
+                <td>{{item.age}}</td>
+                <td>{{item.email}}</td>
+
+            </tr>
         </tbody>
-      </table>
+    </table>
 </div>
 
 <div class="modal fade" id="modalClientes" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -97,11 +91,11 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                <button *ngIf="cedula == ''" type="button" class="btn btn-primary" (click)="save()">Guardar ciente</button>
-                <button *ngIf="cedula != ''" type="button" class="btn btn-primary">Actualizar cliente</button>
-                <button *ngIf="cedula != ''" type="button" class="btn btn-danger">Eliminar cliente</button>
+                <button *ngIf="Id == ''" type="button" class="btn btn-primary" (click)="save()">Guardar
+                    ciente</button>
+                <button *ngIf="Id != ''" type="button" class="btn btn-primary">Actualizar cliente</button>
+                <button *ngIf="Id != ''" type="button" class="btn btn-danger">Eliminar cliente</button>
             </div>
         </div>
     </div>
 </div>
-

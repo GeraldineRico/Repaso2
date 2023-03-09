@@ -3,13 +3,14 @@ import { last } from 'rxjs';
 import { AlertasService } from 'src/app/Services/alertas.service';
 import { PeticionService } from 'src/app/Services/peticion.service';
 declare var $: any;
+declare var swal: any;
 
 @Component({
   selector: 'app-clientes',
   templateUrl: './clientes.component.html',
   styleUrls: ['./clientes.component.css']
 })
-export class ClientesComponent implements OnInit{
+export class ClientesComponent implements OnInit {
 
 
   constructor(private peticion: PeticionService, public alert: AlertasService) {
@@ -37,7 +38,7 @@ export class ClientesComponent implements OnInit{
 
   //cargarId
 
-  cedula: string = ""
+  Id: string = ""
 
 
   OpenModal() {
@@ -56,7 +57,7 @@ export class ClientesComponent implements OnInit{
     this.email = ""
     this.password = ""
     this.cPassword = ""
-    this.cedula = ""
+    this.Id = ""
   }
 
   save() {
@@ -117,34 +118,42 @@ export class ClientesComponent implements OnInit{
 
   }
 
-  cargarId(identification: string) {
-    console.log(identification)
-    //this.Id = id
-    $('#modalClientes').modal('show')
-    // var post = {
+  cargarId(id: string) {
+    console.log(id)
+    this.Id = id
+    
+    var post = {
 
-    //   host: this.peticion.urlLocal,
-    //   path: '/clients/loadIdentification',
-    //   payload: {
-    //     id: this.Id
-    //   }
+      host: this.peticion.urlLocal,
+      path: '/clients/loadIdentification',
+      payload: {
+        id: this.Id
+      }
 
-    // }
+    }
 
-    // this.peticion.post(post.host + post.path, post.payload).then(
-    //   (respuesta: any) => {
-    //     if (respuesta.state == true) {
+    this.peticion.post(post.host + post.path, post.payload).then(
+      (respuesta: any) => {
+        if (respuesta.state == true) {
+          console.log(respuesta.state)
 
-    //       this.code = respuesta.data.code
-    //       this.nameProduct = respuesta.data.nameProduct
-    //       this.price = respuesta.data.price
-    //       $('#modalProductos').modal('show')
-    //     }
-    //     else {
-
-    //     }
-    //   }
-    // )
+          this.identification = respuesta.mensaje.identification
+          this.name = respuesta.mensaje.name
+          this.lastName = respuesta.mensaje.lastName
+          this.adress = respuesta.mensaje.adress
+          this.phone = respuesta.mensaje.phone
+          this.age = respuesta.mensaje.age
+          this.status = respuesta.mensaje.status
+          this.email = respuesta.mensaje.email
+          this.password = respuesta.mensaje.password
+          this.cPassword = respuesta.mensaje.cPassword
+          $('#modalClientes').modal('show')
+        }
+        else {
+          this.alert.load("danger", respuesta.mensaje)
+        }
+      }
+    )
   }
 
   // update() {
